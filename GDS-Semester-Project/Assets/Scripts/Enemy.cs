@@ -11,10 +11,13 @@ public class Enemy : MonoBehaviour
     private Transform player;
     private bool isAlive = true;
 
+    private GameManager gameManager;
+
     private void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
         currentHp = maxHp;
+        gameManager = GameObject.FindObjectOfType<GameManager>();
     }
 
     private void Update()
