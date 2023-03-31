@@ -7,9 +7,12 @@ public class Enemy : MonoBehaviour
     public float speed = 3f;
     public float maxHp = 100f;
     public float currentHp;
+    public float attackDamage = 34f;
+    public float attackDelay = 1f;
 
     private Transform player;
     private bool isAlive = true;
+    private bool isAttacking = false;
 
     private GameManager gameManager;
 
@@ -22,7 +25,7 @@ public class Enemy : MonoBehaviour
 
     private void Update()
     {
-        if (isAlive) {
+        if (isAlive && player != null) {
             Vector2 direction = (player.position - transform.position).normalized;
             transform.Translate(direction * speed * Time.deltaTime);
         }
@@ -30,9 +33,10 @@ public class Enemy : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Player"))
+        if (collision.CompareTag("Player") && !isAttacking)
         {
-            Destroy(gameObject);
+            isAlive = false;
+            StartCoroutine(AttackPlayer(collision.GetComponent<Player>()));
         }
     }
 
@@ -63,5 +67,13 @@ public class Enemy : MonoBehaviour
 
         // Change color back to normal
         GetComponent<SpriteRenderer>().color = Color.white;
+    }
+
+    private IEnumerator AttackPlayer(Player player)
+    {
+        isAttacking = true;
+        yield return new WaitForSeconds(attackDelay);
+        player.TakeDamage(attackDamage);
+        Destroy(gameObject);
     }
 }

@@ -99,4 +99,14 @@ public class Player : MonoBehaviour
             }
         }
     }
+
+    public void TakeDamage(float damage)
+    {
+        Health -= damage;
+        if(Health <= 0)
+        {
+            Health = 0;
+            Destroy(gameObject);
+        }
+    }
 }
