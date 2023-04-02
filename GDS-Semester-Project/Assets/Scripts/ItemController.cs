@@ -13,4 +13,13 @@ public class ItemController : MonoBehaviour
             Destroy(gameObject);
         }
     }
+public enum ItemType
+{
+    Item0,
+    Item1,
+    Item2
+}
+
+public ItemType itemType;
+
 }
