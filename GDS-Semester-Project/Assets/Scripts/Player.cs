@@ -1,5 +1,6 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
-
 public class Player : MonoBehaviour
 {
     public float moveSpeed = 5f;
@@ -8,6 +9,7 @@ public class Player : MonoBehaviour
     public float bulletDamage = 50f;
     public float fireRate = 0.5f;
     public float Health = 100.0f;
+    
 
     private Rigidbody2D rb;
     private Vector2 movement;
@@ -109,4 +111,23 @@ public class Player : MonoBehaviour
             Destroy(gameObject);
         }
     }
+
+
+
+
+      //Various items function realization code from Jacky
+      public float boostedSpeed = 8f;
+      private IEnumerator BoostSpeedCoroutine(float duration)
+    {
+        float originalSpeed = moveSpeed;
+        moveSpeed = boostedSpeed;
+        yield return new WaitForSeconds(duration);
+        moveSpeed = originalSpeed;
+    }
+
+     public void BoostSpeed(float duration)
+    {
+        StartCoroutine(BoostSpeedCoroutine(duration));
+    }
+
 }
