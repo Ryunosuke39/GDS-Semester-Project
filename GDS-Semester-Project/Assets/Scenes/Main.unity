@@ -510,7 +510,7 @@ MonoBehaviour:
   - {fileID: 8617049015672214600}
   - {fileID: 1128330057980436132}
   - {fileID: 440789957286327017}
-  spawnInterval: 3
+  spawnInterval: 15
   spawnRange: {x: 5, y: 5}
 --- !u!4 &913959458
 Transform:
@@ -636,6 +636,8 @@ MonoBehaviour:
   bulletDamage: 50
   fireRate: 0.5
   Health: 100
+  boostedSpeed: 5
+  boostedFireRate: 0.25
 --- !u!50 &1083311661
 Rigidbody2D:
   serializedVersion: 4
@@ -1001,7 +1003,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3464d699ec2669c4eae83501984745b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeLeft: 180
+  timeLeft: 5
 --- !u!1 &1811686154
 GameObject:
   m_ObjectHideFlags: 0

@@ -19,5 +19,12 @@ public class Timer : MonoBehaviour
         int minutes = Mathf.FloorToInt(timeLeft / 60);
         int seconds = Mathf.FloorToInt(timeLeft % 60);
         timerText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
+
+        if(timeLeft <=0 && GameObject.FindGameObjectsWithTag("Enemy").Length > 0)
+        {
+            GameManager.Instance.GameOver();
+            Time.timeScale = 0f;
+            timeLeft = 0f;
+        }
     }
 }
