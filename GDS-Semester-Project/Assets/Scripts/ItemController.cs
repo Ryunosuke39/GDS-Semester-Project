@@ -14,6 +14,9 @@ public class ItemController : MonoBehaviour
         {
             switch (itemType)
             {
+                case ItemType.Item1:
+                     player.BoostFireRate(15f);
+                    break;
                 case ItemType.Item2:
                     player.BoostSpeed(15f);
                     break;

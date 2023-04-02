@@ -116,7 +116,8 @@ public class Player : MonoBehaviour
 
 
       //Various items function realization code from Jacky
-      public float boostedSpeed = 8f;
+      //Item2
+      public float boostedSpeed = 8f;//run fast
       private IEnumerator BoostSpeedCoroutine(float duration)
     {
         float originalSpeed = moveSpeed;
@@ -129,5 +130,20 @@ public class Player : MonoBehaviour
     {
         StartCoroutine(BoostSpeedCoroutine(duration));
     }
+
+    //Item1
+    public float boostedFireRate = 0.1f;//fire fast
+    public void BoostFireRate(float duration)
+   {
+    StartCoroutine(BoostFireRateCoroutine(duration));
+   }
+   private IEnumerator BoostFireRateCoroutine(float duration)
+   {
+    float originalFireRate = fireRate;
+    fireRate = boostedFireRate;
+    yield return new WaitForSeconds(duration);
+    fireRate = originalFireRate;
+   }
+    
 
 }
