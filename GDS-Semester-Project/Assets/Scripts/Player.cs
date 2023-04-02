@@ -132,7 +132,7 @@ public class Player : MonoBehaviour
     }
 
     //Item1
-    public float boostedFireRate = 0.1f;//fire fast
+    public float boostedFireRate = 0.025f;//fire fast
     public void BoostFireRate(float duration)
    {
     StartCoroutine(BoostFireRateCoroutine(duration));
