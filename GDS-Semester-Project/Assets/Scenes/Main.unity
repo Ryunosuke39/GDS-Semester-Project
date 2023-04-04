@@ -174,7 +174,7 @@ MonoBehaviour:
   - {fileID: 1176286416}
   - {fileID: 732399044}
   - {fileID: 1162221199}
-  spawnInterval: 1
+  spawnInterval: 2
   totalEnemies: 10
 --- !u!1 &519420028
 GameObject:
