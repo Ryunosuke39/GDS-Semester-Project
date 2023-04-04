@@ -22,6 +22,7 @@ public class EnemyGenerator : MonoBehaviour
     {
         while (enemiesGenerated < totalEnemies)
         {
+            
             for (int i = 0; i < spawnPoints.Length; i++)
             {
                 if (enemiesGenerated >= totalEnemies)

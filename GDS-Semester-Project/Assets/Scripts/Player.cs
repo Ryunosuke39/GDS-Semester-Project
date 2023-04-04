@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+
 public class Player : MonoBehaviour
 {
     public float moveSpeed = 5f;
@@ -9,7 +10,7 @@ public class Player : MonoBehaviour
     public float bulletDamage = 50f;
     public float fireRate = 0.5f;
     public float Health = 100.0f;
-    
+
 
     private Rigidbody2D rb;
     private Vector2 movement;
@@ -58,6 +59,8 @@ public class Player : MonoBehaviour
         {
             FireBullet();
             timeSinceLastFire = 0f;
+            //audio manager
+            FindObjectOfType<AudioManager>().Play("GunShot");
         }
         timeSinceLastFire += Time.deltaTime;
     }
@@ -105,9 +108,12 @@ public class Player : MonoBehaviour
     public void TakeDamage(float damage)
     {
         Health -= damage;
-        if(Health <= 0)
+        FindObjectOfType<AudioManager>().Play("PlayerInjured"); //audio manager //a bit slow???
+        if (Health <= 0)
         {
             Health = 0;
+            FindObjectOfType<AudioManager>().Play("PlayerDeath"); //Audio Manager
+            
             Destroy(gameObject);
         }
     }

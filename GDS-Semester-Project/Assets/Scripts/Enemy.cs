@@ -29,6 +29,7 @@ public class Enemy : MonoBehaviour
             Vector2 direction = (player.position - transform.position).normalized;
             transform.Translate(direction * speed * Time.deltaTime);
         }
+        
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -44,9 +45,11 @@ public class Enemy : MonoBehaviour
     {
         if (isAlive) {
             currentHp -= damage;
+            FindObjectOfType<AudioManager>().Play("EnemyInjured");//audio manager
             if (currentHp <= 0)
             {
                 isAlive = false;
+                FindObjectOfType<AudioManager>().Play("EnemyDeath");//audio manager
                 Destroy(gameObject);
             } else {
                 // Knockback effect
@@ -72,6 +75,7 @@ public class Enemy : MonoBehaviour
     private IEnumerator AttackPlayer(Player player)
     {
         isAttacking = true;
+        FindObjectOfType<AudioManager>().Play("EnemyAttack");//audio manager
         yield return new WaitForSeconds(attackDelay);
         player.TakeDamage(attackDamage);
         Destroy(gameObject);

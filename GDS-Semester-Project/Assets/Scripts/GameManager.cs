@@ -39,12 +39,14 @@ public class GameManager : MonoBehaviour
         {
             Debug.Log("Win!");
             hasWon = true;
+            FindObjectOfType<AudioManager>().Play("Win");//audio manager
         }
 
         if(!hasLost && player == null)
         {
             Debug.Log("Lose!");
             hasLost = true;
+            FindObjectOfType<AudioManager>().Play("Lose");//audio manager
             Time.timeScale = 0f;
         }
 
