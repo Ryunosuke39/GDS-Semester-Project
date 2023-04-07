@@ -36,6 +36,7 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
+        //added for camera follow 
         cameraFollow.SetUp(() => playerTransform.position);
     }
 

@@ -15,7 +15,7 @@ public class Player : MonoBehaviour
 
     private Rigidbody2D rb;
     private Animator animator;
-
+    private bool playerDead = false;
 
     private void Start()
     {
@@ -74,9 +74,14 @@ public class Player : MonoBehaviour
         if (Health <= 0)
         {
             Health = 0;
-            FindObjectOfType<AudioManager>().Play("PlayerDeath"); //Audio Manager
+            playerDead = true;
+            if (playerDead)
+            {
+                FindObjectOfType<AudioManager>().Play("PlayerDeath"); //Audio Manager
+                return;
+            }
             
-            Destroy(gameObject);
+            //Destroy(gameObject); produce error from camera follow scritp 
         }
     }
 
