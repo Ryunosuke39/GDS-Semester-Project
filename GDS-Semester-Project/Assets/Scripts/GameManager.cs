@@ -7,6 +7,9 @@ public class GameManager : MonoBehaviour
 {
 
     public static GameManager Instance { get; private set; }
+    //camera follow function added
+    public CameraFollow cameraFollow;
+    public Transform playerTransform;
 
     private int enemiesLeft;
     private bool hasWon = false;
@@ -29,6 +32,11 @@ public class GameManager : MonoBehaviour
 
         enemyGenerator = FindObjectOfType<EnemyGenerator>();
         player = FindObjectOfType<Player>();
+    }
+
+    private void Start()
+    {
+        cameraFollow.SetUp(() => playerTransform.position);
     }
 
     private void Update()
