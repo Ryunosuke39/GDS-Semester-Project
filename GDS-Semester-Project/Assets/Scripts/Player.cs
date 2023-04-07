@@ -14,9 +14,6 @@ public class Player : MonoBehaviour
 
 
     private Rigidbody2D rb;
-    private Vector2 movement;
-    private bool isFiring = false;
-    private float timeSinceLastFire = 0f;
     private Animator animator;
 
 
@@ -28,29 +25,12 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
-        ProcessInputs();
-        // Handle firing input
-        if (Input.GetKey(KeyCode.Space)) {
-            isFiring = true;
-        } else {
-            isFiring = false;
-        }
+        ProcessInputs();//read input from player 
     }
 
     private void FixedUpdate()
     {
-        //rb.velocity = movement.normalized * moveSpeed;
-        Move();
-
-        // Fire bullets if spacebar is held down
-        if (isFiring && timeSinceLastFire >= fireRate) 
-        {
-            FireBullet();
-            timeSinceLastFire = 0f;
-            //audio manager
-            FindObjectOfType<AudioManager>().Play("GunShot");
-        }
-        timeSinceLastFire += Time.deltaTime;
+        Move();//player movement 
     }
 
     void ProcessInputs()
@@ -66,25 +46,6 @@ public class Player : MonoBehaviour
         rb.velocity = new Vector2(moveDirection.x * moveSpeed, moveDirection.y * moveSpeed);
     }
 
-    private void FireBullet()
-    {
-        // Create bullet object and set its initial position and rotation
-        GameObject bullet = Instantiate(bulletPrefab, transform.position, Quaternion.identity);
-
-        // Set bullet velocity based on player direction
-        Rigidbody2D bulletRb = bullet.GetComponent<Rigidbody2D>();
-        Vector2 direction;
-        if (movement.x != 0) {
-        direction = new Vector2(movement.x, 0);
-       } else {
-        direction = new Vector2(Mathf.Cos(transform.rotation.eulerAngles.y * Mathf.Deg2Rad), Mathf.Sin(transform.rotation.eulerAngles.y * Mathf.Deg2Rad));
-       }
-        bulletRb.velocity = direction.normalized * bulletSpeed;
-
-        // Set bullet damage
-        Bullet bulletScript = bullet.GetComponent<Bullet>();
-        bulletScript.damage = bulletDamage;
-    }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -118,9 +79,6 @@ public class Player : MonoBehaviour
             Destroy(gameObject);
         }
     }
-
-
-
 
       //Various items function realization code from Jacky
       //Item2
