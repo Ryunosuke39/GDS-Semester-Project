@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class BulletBlueScript : MonoBehaviour
 {
+
+    //2D enemy shooting unity tutorial by MoreBBlakeyyy
     private Vector3 mousePos;
     private Camera mainCam;
     private Rigidbody2D rb;
@@ -18,12 +20,9 @@ public class BulletBlueScript : MonoBehaviour
         Vector3 rotation = transform.position - mousePos;
         rb.velocity = new Vector2(direction.x, direction.y).normalized * force;
         float rot = Mathf.Atan2(rotation.y, rotation.x) * Mathf.Rad2Deg;
-        transform.rotation = Quaternion.Euler(0, 0, rot + 45);// rotation of buttel object coordinate 
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
+        transform.rotation = Quaternion.Euler(0, 0, rot);
 
     }
+
+   
 }
