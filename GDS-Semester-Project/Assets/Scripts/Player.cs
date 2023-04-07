@@ -16,10 +16,12 @@ public class Player : MonoBehaviour
     private Vector2 movement;
     private bool isFiring = false;
     private float timeSinceLastFire = 0f;
+    private Animator animator;
 
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
     }
 
     private void Update()
@@ -41,6 +43,17 @@ public class Player : MonoBehaviour
         } else {
             movement.x = 0;
         }
+
+        /*
+        if(movement.x != 0 || movement.y != 0)
+        {
+            animator.SetBool("Player_move", true);
+        }
+        else
+        {
+            animator.SetBool("Player_move", false);
+        }
+        */
 
         // Handle firing input
         if (Input.GetKey(KeyCode.Space)) {

@@ -13,6 +13,8 @@ public class Enemy : MonoBehaviour
     private Transform player;
     private bool isAlive = true;
     private bool isAttacking = false;
+    private Vector2 direction;
+    private Rigidbody2D rb;
 
     private GameManager gameManager;
 
@@ -21,15 +23,37 @@ public class Enemy : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player").transform;
         currentHp = maxHp;
         gameManager = GameObject.FindObjectOfType<GameManager>();
+        rb = GetComponent<Rigidbody2D>();
     }
 
     private void Update()
     {
         if (isAlive && player != null) {
-            Vector2 direction = (player.position - transform.position).normalized;
-            transform.Translate(direction * speed * Time.deltaTime);
+            direction = (player.position - transform.position).normalized;
+            //transform.Translate(direction * speed * Time.deltaTime);
+
+            //transform.position += new Vector3(direction.x, direction.y, 0) * speed * Time.deltaTime;
+
+            if(direction.x > 0)
+            {
+                transform.rotation = Quaternion.Euler(0, 0, 0);
+            }
+            else if(direction.x < 0)
+            {
+                transform.rotation = Quaternion.Euler(0, 180, 0);
+            }
         }
+
         
+        
+    }
+
+    private void FixedUpdate()
+    {
+        if(isAlive && player != null)
+        {
+            rb.MovePosition(rb.position + direction * speed * Time.fixedDeltaTime);
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
