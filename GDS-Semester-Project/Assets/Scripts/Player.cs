@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    private Vector2 moveDirection;
     public float moveSpeed = 5f;
     public GameObject bulletPrefab;
     public float bulletSpeed = 10f;
@@ -18,6 +19,7 @@ public class Player : MonoBehaviour
     private float timeSinceLastFire = 0f;
     private Animator animator;
 
+
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -26,35 +28,7 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
-        // Handle movement input
-        if (Input.GetKey(KeyCode.W)) {
-            movement.y = 1;
-        } else if (Input.GetKey(KeyCode.S)) {
-            movement.y = -1;
-        } else {
-            movement.y = 0;
-        }
-        if (Input.GetKey(KeyCode.A)) {
-            movement.x = -1;
-            transform.rotation = Quaternion.Euler(0, 180, 0);
-        } else if (Input.GetKey(KeyCode.D)) {
-            movement.x = 1;
-            transform.rotation = Quaternion.Euler(0, 0, 0);
-        } else {
-            movement.x = 0;
-        }
-
-        /*
-        if(movement.x != 0 || movement.y != 0)
-        {
-            animator.SetBool("Player_move", true);
-        }
-        else
-        {
-            animator.SetBool("Player_move", false);
-        }
-        */
-
+        ProcessInputs();
         // Handle firing input
         if (Input.GetKey(KeyCode.Space)) {
             isFiring = true;
@@ -65,7 +39,8 @@ public class Player : MonoBehaviour
 
     private void FixedUpdate()
     {
-        rb.velocity = movement.normalized * moveSpeed;
+        //rb.velocity = movement.normalized * moveSpeed;
+        Move();
 
         // Fire bullets if spacebar is held down
         if (isFiring && timeSinceLastFire >= fireRate) 
@@ -76,6 +51,19 @@ public class Player : MonoBehaviour
             FindObjectOfType<AudioManager>().Play("GunShot");
         }
         timeSinceLastFire += Time.deltaTime;
+    }
+
+    void ProcessInputs()
+    {
+        float moveX = Input.GetAxisRaw("Horizontal");
+        float moveY = Input.GetAxisRaw("Vertical");
+
+        moveDirection = new Vector2(moveX, moveY).normalized;
+    }
+
+    void Move()
+    {
+        rb.velocity = new Vector2(moveDirection.x * moveSpeed, moveDirection.y * moveSpeed);
     }
 
     private void FireBullet()
