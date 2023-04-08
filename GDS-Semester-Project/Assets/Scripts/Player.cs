@@ -12,10 +12,11 @@ public class Player : MonoBehaviour
     public float fireRate = 0.5f;
     public float Health = 100.0f;
 
-
+    private bool isPlayerDead = false;
+    private bool isPlayerDeathPlayed = false;
     private Rigidbody2D rb;
     private Animator animator;
-    private bool playerDead = false;
+
 
     private void Start()
     {
@@ -35,17 +36,20 @@ public class Player : MonoBehaviour
 
     void ProcessInputs()
     {
-        float moveX = Input.GetAxisRaw("Horizontal");
-        float moveY = Input.GetAxisRaw("Vertical");
+        if (!isPlayerDead)
+        {
+            float moveX = Input.GetAxisRaw("Horizontal");
+            float moveY = Input.GetAxisRaw("Vertical");
 
-        moveDirection = new Vector2(moveX, moveY).normalized;
+            moveDirection = new Vector2(moveX, moveY).normalized;
+        }
     }
 
     void Move()
     {
+        //if(!isPlayerDead)
         rb.velocity = new Vector2(moveDirection.x * moveSpeed, moveDirection.y * moveSpeed);
     }
-
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -70,17 +74,18 @@ public class Player : MonoBehaviour
     public void TakeDamage(float damage)
     {
         Health -= damage;
+        if(!isPlayerDead)
         FindObjectOfType<AudioManager>().Play("PlayerInjured"); //audio manager //a bit slow???
+
         if (Health <= 0)
         {
             Health = 0;
-            playerDead = true;
-            if (playerDead)
+            isPlayerDead = true;
+            if (isPlayerDead && !isPlayerDeathPlayed)
             {
                 FindObjectOfType<AudioManager>().Play("PlayerDeath"); //Audio Manager
-                return;
+                isPlayerDeathPlayed = true;
             }
-            
             //Destroy(gameObject); produce error from camera follow scritp 
         }
     }
