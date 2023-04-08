@@ -12,8 +12,10 @@ public class Player : MonoBehaviour
     public float fireRate = 0.5f;
     public float Health = 100.0f;
 
+    //these two isplayerdead and is playerdeathplayed is for audio system for player
     private bool isPlayerDead = false;
     private bool isPlayerDeathPlayed = false;
+
     private Rigidbody2D rb;
     private Animator animator;
 
