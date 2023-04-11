@@ -28,6 +28,19 @@ public class Shooting : MonoBehaviour
 
         transform.rotation = Quaternion.Euler(0, 0, rotZ);
 
+        //flip gunsprite when player point gun at left side
+        Vector3 alocalScale = Vector3.one;
+        if(rotZ > 90 || rotZ < -90)
+        {
+            alocalScale.y = -1f;
+        }
+        else
+        {
+            alocalScale.y = +1f;
+        }
+        transform.localScale = alocalScale;
+
+        //Fire rate 
         if(!canFire)
         {
             timer += Time.deltaTime;
