@@ -19,6 +19,11 @@ public class Player : MonoBehaviour
     private Rigidbody2D rb;
     private Animator animator;
 
+    //which diretion is player moving?
+    bool isFacingRight = false;
+    bool isFacingLeft = false;
+    bool isFacingUp = false;
+    bool isFacingDown = false;
 
     private void Start()
     {
@@ -29,11 +34,37 @@ public class Player : MonoBehaviour
     private void Update()
     {
         ProcessInputs();//read input from player 
+        DirectionDitector();
     }
 
     private void FixedUpdate()
     {
         Move();//player movement 
+    }
+
+    //check which direction player facing
+    void DirectionDitector()
+    {
+        //Up
+        if (Input.GetKeyDown(KeyCode.W))
+            isFacingUp = true;
+        else
+            isFacingUp = false;
+        //Down
+        if (Input.GetKeyDown(KeyCode.W))
+            isFacingUp = true;
+        else
+            isFacingUp = false;
+        //Right
+        if (Input.GetKeyDown(KeyCode.W))
+            isFacingUp = true;
+        else
+            isFacingUp = false;
+        //Left
+        if (Input.GetKeyDown(KeyCode.W))
+            isFacingUp = true;
+        else
+            isFacingUp = false;
     }
 
     void ProcessInputs()

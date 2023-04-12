@@ -13,9 +13,13 @@ public class Shooting : MonoBehaviour
     private float timer;
     public float timeBetweenFiring;
 
+    //reference to player 
+    Player player; //script called player
+
     void Start()
     {
         mainCam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
     }
 
     void Update()
@@ -26,7 +30,8 @@ public class Shooting : MonoBehaviour
 
         float rotZ = Mathf.Atan2(rotation.y, rotation.x) * Mathf.Rad2Deg;
 
-        transform.rotation = Quaternion.Euler(0, 0, rotZ);
+        transform.rotation = Quaternion.Euler(0, 0, rotZ);//test 
+        //transform.rotation = Quaternion.Euler(0, 0, rotZ - (rotZ / 2));
 
         //flip gunsprite when player point gun at left side
         Vector3 alocalScale = Vector3.one;
