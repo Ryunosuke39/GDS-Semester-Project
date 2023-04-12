@@ -78,6 +78,7 @@ public class Enemy : MonoBehaviour
             {
                 isAlive = false;
                 FindObjectOfType<AudioManager>().Play("EnemyDeath");//audio manager
+                Timer.Instance.AddTime(5);
                 Destroy(gameObject);
             } else {
                 // Knockback effect
