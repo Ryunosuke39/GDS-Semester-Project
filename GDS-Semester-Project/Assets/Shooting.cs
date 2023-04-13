@@ -62,11 +62,13 @@ public class Shooting : MonoBehaviour
         {
             canFire = false;
             Instantiate(bullet, bulletTransform.position, Quaternion.identity);
-            if(player.shotGun)
+            
+            if(player.isShotgun)
             {
                 Instantiate(shotgunBullet1, bulletTransform.position, Quaternion.identity);
                 Instantiate(shotgunBullet2, bulletTransform.position, Quaternion.identity);
             }
+            
         }
     }
 }

@@ -36,6 +36,5 @@ public class BulletBlueScript : MonoBehaviour
     {
         gunDirection = GameObject.FindGameObjectWithTag("gunDirection").GetComponent<Transform>();
     }
-
-   
+ 
 }

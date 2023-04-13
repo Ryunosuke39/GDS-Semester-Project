@@ -29,6 +29,8 @@ public class Player : MonoBehaviour
     public Sprite machineGun;
     //different bullet 
     public GameObject shotGunBullet;
+    public GameObject sniperBullet;
+    public GameObject machinegunBullet;
     //reference for scripts 
     BulletBlueScript bullBlueScript;
     Bullet bullte;
@@ -40,7 +42,7 @@ public class Player : MonoBehaviour
     bool isFacingDown = false;
 
     //for shotgun
-    bool isShotgun;
+    public bool isShotgun = false;
 
     private void Start()
     {
@@ -135,7 +137,9 @@ public class Player : MonoBehaviour
                 }
                 if(child.name == "RotatePoint")
                 {
-                    child.GetComponent<Shooting>().bullet = shotGunBullet;
+                    child.GetComponent<Shooting>().bullet = shotGunBullet;//change bullet prefab to shotgun one(certal bullet)
+                    child.GetComponent<Shooting>().timeBetweenFiring = 2f;
+                    //for damage, check prehab 
                 }
             }
         }
@@ -144,26 +148,41 @@ public class Player : MonoBehaviour
         //gun change 
         if (collision.tag == "Snipergun")
         {
-            Debug.Log("Snipergun collide");
+            
+            Debug.Log("Snipergun collide" + isShotgun);
+            isShotgun = false;
             foreach (var child in children)
             {
                 if (child.name == "GunSprit")
                 {
                     child.GetComponent<SpriteRenderer>().sprite = sniperGun; //change sprite
                 }
+                if(child.name == "RotatePoint")
+                {
+                    child.GetComponent<Shooting>().bullet = sniperBullet;
+                    child.GetComponent<Shooting>().timeBetweenFiring = 5f;//5 second to reload
+                    //for damage, check prehab 
+                }
             }
         }
 
-        //sniper
+        //Machinegun
         //gun change 
         if (collision.tag == "Machinegun")
         {
             Debug.Log("Machinegun collide");
+            isShotgun = false;
             foreach (var child in children)
             {
                 if (child.name == "GunSprit")
                 {
                     child.GetComponent<SpriteRenderer>().sprite = machineGun; //change sprite
+                }
+                if(child.name == "RotatePoint")
+                {
+                    child.GetComponent<Shooting>().bullet = machinegunBullet;
+                    child.GetComponent<Shooting>().timeBetweenFiring = 0.3f;
+                    //for damage, check prehab 
                 }
             }
         }
