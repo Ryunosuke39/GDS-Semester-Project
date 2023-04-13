@@ -15029,6 +15029,10 @@ PrefabInstance:
       propertyPath: machineGun
       value: 
       objectReference: {fileID: -88864415, guid: 6c89a8bb3057e6649b28177105b00fb4, type: 3}
+    - target: {fileID: 6003391756181416492, guid: f2bc55b584e7c3a46b345aca50dbecee, type: 3}
+      propertyPath: shotGunBullet
+      value: 
+      objectReference: {fileID: 1138211247793099325, guid: 6798692b748c2284aa5ec5b3d601a49c, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
