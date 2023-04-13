@@ -19,6 +19,16 @@ public class Player : MonoBehaviour
     private Rigidbody2D rb;
     private Animator animator;
 
+    //for gun changeing reference
+    Transform[] children;
+    Transform currentGun;
+    public Sprite shotGun;
+    public Sprite sniperGun;
+    public Sprite machineGun;
+    //reference for scripts 
+    BulletBlueScript bullBlueScript;
+    Bullet bullte;
+
     //which diretion is player moving?
     bool isFacingRight = false;
     bool isFacingLeft = false;
@@ -29,6 +39,19 @@ public class Player : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
+
+        //references for gun changing 
+        //currentGun = gameObject.transform.FindChild("RotatePoint/BulletTransform/GunSprite");
+        //bullBlueScript = gameObject.transform.FindChild("RotatePoint").GetComponent<BulletBlueScript>();
+        children = transform.GetComponentsInChildren<Transform>();
+        foreach(var child in children)
+        {
+            if(child.name == "GunSprit")
+            {
+                child.GetComponent<SpriteRenderer>().sprite = shotGun;
+            }
+        }
+
     }
 
     private void Update()
@@ -41,6 +64,8 @@ public class Player : MonoBehaviour
     {
         Move();//player movement 
     }
+
+
 
     //check which direction player facing
     void DirectionDitector()
