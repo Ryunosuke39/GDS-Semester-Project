@@ -29,6 +29,11 @@ public class Player : MonoBehaviour
     private void Update()
     {
         ProcessInputs();//read input from player 
+
+        if(Health <= 0)
+        {
+            GameManager.Instance.PlayerLost();
+        }
     }
 
     private void FixedUpdate()
@@ -89,6 +94,7 @@ public class Player : MonoBehaviour
                 isPlayerDeathPlayed = true;
             }
             //Destroy(gameObject); produce error from camera follow scritp 
+            //gameObject.SetActive(false);
         }
     }
 
