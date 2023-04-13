@@ -22,10 +22,13 @@ public class Player : MonoBehaviour
 
     //for gun changeing reference
     Transform[] children;
-    Sprite currentGun;
+    //Sprite currentGun;
+    //gun sprites
     public Sprite shotGun;
     public Sprite sniperGun;
     public Sprite machineGun;
+    //different bullet 
+    public GameObject shotGunBullet;
     //reference for scripts 
     BulletBlueScript bullBlueScript;
     Bullet bullte;
@@ -125,6 +128,10 @@ public class Player : MonoBehaviour
                 if (child.name == "GunSprit")
                 {
                     child.GetComponent<SpriteRenderer>().sprite = shotGun; //change sprite
+                }
+                if(child.name == "RotatePoint")
+                {
+                    child.GetComponent<Shooting>().bullet = shotGunBullet;
                 }
             }
         }
