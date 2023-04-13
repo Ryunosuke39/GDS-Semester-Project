@@ -8,6 +8,8 @@ TagManager:
   - Enemy
   - gunDirection
   - Shotgun
+  - Snipergun
+  - Machinegun
   layers:
   - Default
   - TransparentFX

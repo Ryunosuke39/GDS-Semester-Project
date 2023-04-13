@@ -112,9 +112,11 @@ public class Player : MonoBehaviour
         }
     }
 
+    //gun change 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         //gun change 
+        //shot gun
         if (collision.tag == "Shotgun")
         {
             Debug.Log("shotGun collide");
@@ -127,6 +129,33 @@ public class Player : MonoBehaviour
             }
         }
 
+        //sniper
+        //gun change 
+        if (collision.tag == "Snipergun")
+        {
+            Debug.Log("Snipergun collide");
+            foreach (var child in children)
+            {
+                if (child.name == "GunSprit")
+                {
+                    child.GetComponent<SpriteRenderer>().sprite = sniperGun; //change sprite
+                }
+            }
+        }
+
+        //sniper
+        //gun change 
+        if (collision.tag == "Machinegun")
+        {
+            Debug.Log("Machinegun collide");
+            foreach (var child in children)
+            {
+                if (child.name == "GunSprit")
+                {
+                    child.GetComponent<SpriteRenderer>().sprite = machineGun; //change sprite
+                }
+            }
+        }
     }
 
     private void LateUpdate()
