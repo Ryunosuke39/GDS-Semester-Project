@@ -39,6 +39,9 @@ public class Player : MonoBehaviour
     bool isFacingUp = false;
     bool isFacingDown = false;
 
+    //for shotgun
+    bool isShotgun;
+
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -123,6 +126,7 @@ public class Player : MonoBehaviour
         if (collision.tag == "Shotgun")
         {
             Debug.Log("shotGun collide");
+            isShotgun = true;
             foreach (var child in children)
             {
                 if (child.name == "GunSprit")

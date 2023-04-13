@@ -14,7 +14,10 @@ public class Shooting : MonoBehaviour
     public float timeBetweenFiring;
 
     //reference to player 
-    Player player; //script called player
+    Player player;
+    //for shotgun
+    public GameObject shotgunBullet1;
+    public GameObject shotgunBullet2;
 
     void Start()
     {
@@ -59,6 +62,11 @@ public class Shooting : MonoBehaviour
         {
             canFire = false;
             Instantiate(bullet, bulletTransform.position, Quaternion.identity);
+            if(player.shotGun)
+            {
+                Instantiate(shotgunBullet1, bulletTransform.position, Quaternion.identity);
+                Instantiate(shotgunBullet2, bulletTransform.position, Quaternion.identity);
+            }
         }
     }
 }
