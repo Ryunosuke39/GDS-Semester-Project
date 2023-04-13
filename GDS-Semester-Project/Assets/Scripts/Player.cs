@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Player : MonoBehaviour
@@ -21,7 +22,7 @@ public class Player : MonoBehaviour
 
     //for gun changeing reference
     Transform[] children;
-    Transform currentGun;
+    Sprite currentGun;
     public Sprite shotGun;
     public Sprite sniperGun;
     public Sprite machineGun;
@@ -43,15 +44,9 @@ public class Player : MonoBehaviour
         //references for gun changing 
         //currentGun = gameObject.transform.FindChild("RotatePoint/BulletTransform/GunSprite");
         //bullBlueScript = gameObject.transform.FindChild("RotatePoint").GetComponent<BulletBlueScript>();
+        //find current gun sprite reference 
         children = transform.GetComponentsInChildren<Transform>();
-        foreach(var child in children)
-        {
-            if(child.name == "GunSprit")
-            {
-                child.GetComponent<SpriteRenderer>().sprite = shotGun;
-            }
-        }
-
+        
     }
 
     private void Update()
@@ -116,7 +111,24 @@ public class Player : MonoBehaviour
             Destroy(collision.gameObject);
         }
     }
-    
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        //gun change 
+        if (collision.tag == "Shotgun")
+        {
+            Debug.Log("shotGun collide");
+            foreach (var child in children)
+            {
+                if (child.name == "GunSprit")
+                {
+                    child.GetComponent<SpriteRenderer>().sprite = shotGun; //change sprite
+                }
+            }
+        }
+
+    }
+
     private void LateUpdate()
     {
         // Destroy bullets that leave the camera view
