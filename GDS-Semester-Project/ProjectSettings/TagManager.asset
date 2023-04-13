@@ -10,6 +10,8 @@ TagManager:
   - Shotgun
   - Snipergun
   - Machinegun
+  - ShotgunUp
+  - ShotgunDown
   layers:
   - Default
   - TransparentFX

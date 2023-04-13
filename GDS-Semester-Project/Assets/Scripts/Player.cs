@@ -35,6 +35,9 @@ public class Player : MonoBehaviour
     BulletBlueScript bullBlueScript;
     Bullet bullte;
 
+    //what gun does player have?
+    public GameObject Shotgun;
+
     //which diretion is player moving?
     bool isFacingRight = false;
     bool isFacingLeft = false;
@@ -103,6 +106,14 @@ public class Player : MonoBehaviour
             float moveY = Input.GetAxisRaw("Vertical");
 
             moveDirection = new Vector2(moveX, moveY).normalized;
+
+            //press w to change weapon 
+            //if(Input.GetKeyDown(KeyCode.G && shotgunGained)
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                Instantiate(Shotgun, transform.position, Quaternion.identity);
+            }
+
         }
     }
 
@@ -181,7 +192,7 @@ public class Player : MonoBehaviour
                 if(child.name == "RotatePoint")
                 {
                     child.GetComponent<Shooting>().bullet = machinegunBullet;
-                    child.GetComponent<Shooting>().timeBetweenFiring = 0.3f;
+                    child.GetComponent<Shooting>().timeBetweenFiring = 0.1f;
                     //for damage, check prehab 
                 }
             }
