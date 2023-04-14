@@ -25,10 +25,12 @@ public class Player : MonoBehaviour
     Transform[] children;
     //Sprite currentGun;
     //gun sprites
+    public Sprite handgun;
     public Sprite shotGun;
     public Sprite sniperGun;
     public Sprite machineGun;
     //different bullet 
+    public GameObject handgunBullet;
     public GameObject shotGunBullet;
     public GameObject sniperBullet;
     public GameObject machinegunBullet;
@@ -97,6 +99,26 @@ public class Player : MonoBehaviour
     //gun change 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        //hand gun
+        if(collision.tag == "Handgun")
+        {
+            Debug.Log("Handgun collide");
+            isShotgun = false;
+            foreach(var child in children)
+            {
+                if(child.name == "GunSprit")
+                {
+                    child.GetComponent<SpriteRenderer>().sprite = handgun; //change sprite
+                }
+                if(child.name == "RotatePoint")
+                {
+                    child.GetComponent<Shooting>().bullet = handgunBullet;//change bullet prefad to handgun one
+                    child.GetComponent<Shooting>().timeBetweenFiring = 0.5f;
+                    //for damage, check bullet prefab 
+                }
+            }
+        }
+
         //gun change 
         //shot gun
         if (collision.tag == "Shotgun")

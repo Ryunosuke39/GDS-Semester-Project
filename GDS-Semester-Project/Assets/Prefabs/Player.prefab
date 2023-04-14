@@ -707,9 +707,11 @@ MonoBehaviour:
   fireRate: 0.5
   Health: 100
   animator: {fileID: 6003391756181416497}
+  handgun: {fileID: -548803325, guid: 6c89a8bb3057e6649b28177105b00fb4, type: 3}
   shotGun: {fileID: 1570296827, guid: 6c89a8bb3057e6649b28177105b00fb4, type: 3}
   sniperGun: {fileID: 1719020796, guid: 6c89a8bb3057e6649b28177105b00fb4, type: 3}
   machineGun: {fileID: -88864415, guid: 6c89a8bb3057e6649b28177105b00fb4, type: 3}
+  handgunBullet: {fileID: 9020807165172991127, guid: 1fa25dd40b013634f93cdca052d02c56, type: 3}
   shotGunBullet: {fileID: 1138211247793099325, guid: 6798692b748c2284aa5ec5b3d601a49c, type: 3}
   sniperBullet: {fileID: 3721912781487133354, guid: 9a52783f98621fd4da2a4a1ee76a2883, type: 3}
   machinegunBullet: {fileID: 7218364836991395904, guid: 79c3325941f21af4a95dcd04817f9182, type: 3}
