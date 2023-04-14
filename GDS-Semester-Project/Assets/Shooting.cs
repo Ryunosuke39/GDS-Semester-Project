@@ -10,7 +10,7 @@ public class Shooting : MonoBehaviour
     public GameObject bullet;
     public Transform bulletTransform;
     public bool canFire;
-    private float timer;
+    public float Firetimer;
     public float timeBetweenFiring;
 
     //reference to player 
@@ -51,11 +51,11 @@ public class Shooting : MonoBehaviour
         //Fire rate 
         if(!canFire)
         {
-            timer += Time.deltaTime;
-            if(timer > timeBetweenFiring)
+            Firetimer += Time.deltaTime;
+            if(Firetimer > timeBetweenFiring)
             {
                 canFire = true;
-                timer = 0;
+                Firetimer = 0;
             }
         }
         if(Input.GetMouseButton(0) && canFire)
