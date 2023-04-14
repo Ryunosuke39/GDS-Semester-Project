@@ -15,7 +15,18 @@ public class CameraFollow : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        if(GetCameraFollowPositionFunc == null)
+        {
+            return;
+        }
+
+
         Vector3 cameraFollowPosition = GetCameraFollowPositionFunc();
+        if (cameraFollowPosition == Vector3.zero)
+        {
+            return;
+        }
         cameraFollowPosition.z = transform.position.z;
         transform.position = cameraFollowPosition;
     }

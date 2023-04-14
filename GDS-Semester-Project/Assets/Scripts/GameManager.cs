@@ -5,60 +5,43 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-
     public static GameManager Instance { get; private set; }
     //camera follow function added
     public CameraFollow cameraFollow;
     public Transform playerTransform;
 
-    private int enemiesLeft;
-    private bool hasWon = false;
-    private EnemyGenerator enemyGenerator;
-    private Player player;
-    private bool hasLost = false;
     private bool isGameOver = false;
 
     private void Awake()
     {
-        if(Instance == null)
+        if (Instance == null)
         {
             Instance = this;
         }
-        else 
+        else
         {
             Destroy(gameObject);
         }
-
-
-        enemyGenerator = FindObjectOfType<EnemyGenerator>();
-        player = FindObjectOfType<Player>();
     }
 
     private void Start()
     {
         //added for camera follow 
+        cameraFollow.SetUp(() => 
+        {
+            if(playerTransform == null || !playerTransform.gameObject.activeInHierarchy)
+            {
+                return Vector3.zero;
+            }
+            return playerTransform.position;
+        });
         cameraFollow.SetUp(() => playerTransform.position);
     }
 
     private void Update()
     {
-        enemiesLeft = GameObject.FindGameObjectsWithTag("Enemy").Length;
 
-        if (!hasWon && enemiesLeft == 0 && enemyGenerator.enemiesGenerated >= enemyGenerator.totalEnemies)
-        {
-            Debug.Log("Win!");
-            hasWon = true;
-            FindObjectOfType<AudioManager>().Play("Win");//audio manager
-        }
-
-        if(!hasLost && player == null)
-        {
-            Debug.Log("Lose!");
-            hasLost = true;
-            FindObjectOfType<AudioManager>().Play("Lose");//audio manager
-            Time.timeScale = 0f;
-        }
-
+        
         if (Input.GetKeyDown(KeyCode.R))
         {
             ResetGame();
@@ -71,7 +54,31 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
-    public void GameOver()
+    public void TimeIsUp()
+    {
+        if (isGameOver)
+        {
+            return;
+        }
+
+        isGameOver = true;
+        Debug.Log("Lose!");
+        Time.timeScale = 0f;
+    }
+
+    public void Win()
+    {
+        if(isGameOver)
+        {
+            return;
+        }
+
+        isGameOver = true;
+        Debug.Log("Win!");
+        Time.timeScale = 0f;
+    }
+
+    public void PlayerLost()
     {
         if(isGameOver)
         {

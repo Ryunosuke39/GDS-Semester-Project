@@ -52,7 +52,11 @@ public class Enemy : MonoBehaviour
     {
         if(isAlive && player != null)
         {
-            rb.MovePosition(rb.position + direction * speed * Time.fixedDeltaTime);
+            rb.velocity = direction * speed;
+        }
+        else
+        {
+            rb.velocity = Vector2.zero;
         }
     }
 
@@ -74,6 +78,7 @@ public class Enemy : MonoBehaviour
             {
                 isAlive = false;
                 FindObjectOfType<AudioManager>().Play("EnemyDeath");//audio manager
+                Timer.Instance.AddTime(5);
                 Destroy(gameObject);
             } else {
                 // Knockback effect
