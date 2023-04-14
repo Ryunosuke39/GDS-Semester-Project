@@ -78,6 +78,7 @@ public class Player : MonoBehaviour
 
     public void TakeDamage(float damage)
     {
+         Debug.Log("Player takes damage: " + damage);
         Health -= damage;
         if(!isPlayerDead)
         FindObjectOfType<AudioManager>().Play("PlayerInjured"); //audio manager //a bit slow???
