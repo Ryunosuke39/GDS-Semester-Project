@@ -86,26 +86,6 @@ public class Player : MonoBehaviour
         rb.MovePosition(rb.position + movement * moveSpeed * Time.fixedDeltaTime);
     }
 
-    //not used anymore 
-    void ProcessInputs()
-    {
-        if (!isPlayerDead)
-        {
-            float moveX = Input.GetAxisRaw("Horizontal");
-            float moveY = Input.GetAxisRaw("Vertical");
-
-            moveDirection = new Vector2(moveX, moveY).normalized;
-
-        }
-    }
-
-    //not used anymore
-    void Move()
-    {
-        //if(!isPlayerDead)
-        rb.velocity = new Vector2(moveDirection.x * moveSpeed, moveDirection.y * moveSpeed);
-    }
-
     private void OnCollisionEnter2D(Collision2D collision)
     {
         // Destroy bullet if it collides with another object
