@@ -17,8 +17,9 @@ public class Player : MonoBehaviour
     private bool isPlayerDead = false;
     private bool isPlayerDeathPlayed = false;
 
+    //movement animatiom 
     private Rigidbody2D rb;
-    private Animator animator;
+    public Animator animator;
 
     //for gun changeing reference
     Transform[] children;
@@ -47,10 +48,13 @@ public class Player : MonoBehaviour
     //for shotgun
     public bool isShotgun = false;
 
+    //player movement 
+    Vector2 movement;
+
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        animator = GetComponent<Animator>();
+        //animator = GetComponent<Animator>();
 
         //references for gun changing 
         //currentGun = gameObject.transform.FindChild("RotatePoint/BulletTransform/GunSprite");
@@ -62,42 +66,27 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
-        ProcessInputs();//read input from player 
-        DirectionDitector();
+        //ProcessInputs();//read input from player 
+        if (!isPlayerDead)
+        {
+            movement.x = Input.GetAxisRaw("Horizontal");
+            movement.y = Input.GetAxisRaw("Vertical");
+
+            //moveDirection = new Vector2(moveX, moveY).normalized;
+            animator.SetFloat("Horizontal", movement.x);
+            animator.SetFloat("Vertical", movement.y);
+            animator.SetFloat("Speed", movement.sqrMagnitude);
+        }
+        
     }
 
     private void FixedUpdate()
     {
-        Move();//player movement 
+        //Move();//player movement 
+        rb.MovePosition(rb.position + movement * moveSpeed * Time.fixedDeltaTime);
     }
 
-
-
-    //check which direction player facing
-    void DirectionDitector()
-    {
-        //Up
-        if (Input.GetKeyDown(KeyCode.W))
-            isFacingUp = true;
-        else
-            isFacingUp = false;
-        //Down
-        if (Input.GetKeyDown(KeyCode.W))
-            isFacingUp = true;
-        else
-            isFacingUp = false;
-        //Right
-        if (Input.GetKeyDown(KeyCode.W))
-            isFacingUp = true;
-        else
-            isFacingUp = false;
-        //Left
-        if (Input.GetKeyDown(KeyCode.W))
-            isFacingUp = true;
-        else
-            isFacingUp = false;
-    }
-
+    //not used anymore 
     void ProcessInputs()
     {
         if (!isPlayerDead)
@@ -107,16 +96,10 @@ public class Player : MonoBehaviour
 
             moveDirection = new Vector2(moveX, moveY).normalized;
 
-            //press w to change weapon 
-            //if(Input.GetKeyDown(KeyCode.G && shotgunGained)
-            if (Input.GetKeyDown(KeyCode.Space))
-            {
-                Instantiate(Shotgun, transform.position, Quaternion.identity);
-            }
-
         }
     }
 
+    //not used anymore
     void Move()
     {
         //if(!isPlayerDead)
