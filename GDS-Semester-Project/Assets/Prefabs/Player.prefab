@@ -706,6 +706,7 @@ MonoBehaviour:
   bulletDamage: 50
   fireRate: 0.5
   Health: 100
+  animator: {fileID: 6003391756181416497}
   shotGun: {fileID: 1570296827, guid: 6c89a8bb3057e6649b28177105b00fb4, type: 3}
   sniperGun: {fileID: 1719020796, guid: 6c89a8bb3057e6649b28177105b00fb4, type: 3}
   machineGun: {fileID: -88864415, guid: 6c89a8bb3057e6649b28177105b00fb4, type: 3}
