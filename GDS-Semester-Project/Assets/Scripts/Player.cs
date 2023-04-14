@@ -11,6 +11,8 @@ public class Player : MonoBehaviour
     public float bulletDamage = 50f;
     public float fireRate = 0.5f;
     public float Health = 100.0f;
+    public float maxHealth = 100.0f;
+
 
     //these two isplayerdead and is playerdeathplayed is for audio system for player
     private bool isPlayerDead = false;
@@ -24,6 +26,7 @@ public class Player : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
+        Health = maxHealth;
     }
 
     private void Update()
