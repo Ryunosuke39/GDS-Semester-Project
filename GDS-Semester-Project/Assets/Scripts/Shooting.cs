@@ -113,17 +113,6 @@ public class Shooting : MonoBehaviour
                 rotZ = Mathf.Clamp(rotZ, -180, 0);
             }
         }
-        else // Not pressing WASD
-        {
-            if (rotZ >= -90 && rotZ <= 90) //Right side
-            {
-                rotZ = Mathf.Clamp(rotZ, -90, 90);
-            }
-            else if (rotZ >= 90 && rotZ <= 270) // Left side
-            {
-                rotZ = Mathf.Clamp(rotZ, 90, 270);
-            }
-        }
         
         
         /*
