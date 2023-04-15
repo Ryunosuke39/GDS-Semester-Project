@@ -41,12 +41,6 @@ public class Player : MonoBehaviour
     //what gun does player have?
     public GameObject Shotgun;
 
-    //which diretion is player moving?
-    bool isFacingRight = false;
-    bool isFacingLeft = false;
-    bool isFacingUp = false;
-    bool isFacingDown = false;
-
     //for shotgun
     public bool isShotgun = false;
 
