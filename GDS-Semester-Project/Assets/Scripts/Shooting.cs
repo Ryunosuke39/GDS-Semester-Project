@@ -33,8 +33,6 @@ public class Shooting : MonoBehaviour
 
         float rotZ = Mathf.Atan2(rotation.y, rotation.x) * Mathf.Rad2Deg;
 
-        rotZ = ClampRotation(rotZ);
-
         transform.rotation = Quaternion.Euler(0, 0, rotZ);//test 
         //transform.rotation = Quaternion.Euler(0, 0, rotZ - (rotZ / 2));
 
@@ -72,130 +70,6 @@ public class Shooting : MonoBehaviour
             }
             
         }
-    }
-
-    private float ClampRotation(float rotZ)
-    {
-        bool isPressingA = Input.GetKey(KeyCode.A);
-        bool isPressingD = Input.GetKey(KeyCode.D);
-        bool isPressingW = Input.GetKey(KeyCode.W);
-        bool isPressingS = Input.GetKey(KeyCode.S);
-        
-
-        float buffer = 5f;
-        
-        if (isPressingA && !isPressingD && !isPressingS && !isPressingW) 
-        {
-            if (rotZ >= 0 && rotZ <= 180 + buffer)
-            {
-                rotZ = Mathf.Clamp(rotZ, 90, 180);
-            }
-            else
-            {
-                rotZ = Mathf.Clamp(rotZ, -180, -90);
-            }
-        }
-        else if (!isPressingA && isPressingD && !isPressingS && !isPressingW) 
-        {
-            rotZ = Mathf.Clamp(rotZ, -90, 90);
-        }
-        else if (isPressingW && !isPressingS && !isPressingA && !isPressingD) 
-        {
-            if(rotZ >= -180 + buffer && rotZ <= 180 - buffer)
-            {
-                rotZ = Mathf.Clamp(rotZ, 0, 180);
-            }
-        }  
-        else if (!isPressingW && isPressingS && !isPressingA && !isPressingD) 
-        {
-            if(rotZ >= -180 + buffer && rotZ <= 180 - buffer)
-            {
-                rotZ = Mathf.Clamp(rotZ, -180, 0);
-            }
-        }
-        
-        
-        /*
-        if(isPressingA)
-        {
-            if(rotZ >= 0 && rotZ <= 180)
-            {
-                rotZ = Mathf.Clamp(rotZ, 90, 180);
-            }
-            else
-            {
-                rotZ = Mathf.Clamp(rotZ, -180, -90);
-            }
-        }
-        else if(isPressingD)
-        {
-            rotZ = Mathf.Clamp(rotZ, -90, 90);
-        }
-        if(isPressingW)
-        {
-            if(!isPressingA && !isPressingD)
-            {
-                rotZ = Mathf.Clamp(rotZ, 0, 180);
-            }
-            else
-            {
-                rotZ = Mathf.Clamp(rotZ, 0, rotZ);
-            }
-        }
-        else if(isPressingS)
-        {
-            if(!isPressingA && !isPressingD)
-            {
-                rotZ = Mathf.Clamp(rotZ, -180, 0);
-            }
-            else
-            {
-                rotZ = Mathf.Clamp(rotZ, rotZ, 0);
-            }
-        }
-        */
-
-        /*
-        if(isPressingA)
-        {
-            if(isPressingW)
-            {
-                rotZ = Mathf.Clamp(rotZ, 90, 180);
-            }
-            else if(isPressingS)
-            {
-                rotZ = Mathf.Clamp(rotZ, 0, 90);
-            }
-            else
-            {
-                rotZ = Mathf.Clamp(rotZ, 0, 180);
-            }
-        }
-        else if(isPressingD)
-        {
-            if(isPressingW)
-            {
-                rotZ = Mathf.Clamp(rotZ, -180, -90);
-            }
-            else if(isPressingS)
-            {
-                rotZ = Mathf.Clamp(rotZ, -90, 0);
-            }
-            else
-            {
-                rotZ = Mathf.Clamp(rotZ, -180, 0);
-            }
-        }
-        else if(isPressingW)
-        {
-            rotZ = Mathf.Clamp(rotZ, -90, 90);
-        }
-        else if(isPressingS)
-        {
-            rotZ = Mathf.Clamp(rotZ, 90, 270);
-        }
-        */
-        return rotZ;
     }
 
     
