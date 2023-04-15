@@ -572,7 +572,17 @@ MonoBehaviour:
   bulletDamage: 50
   fireRate: 0.5
   Health: 100
-  maxHealth: 100
+  animator: {fileID: 526104709}
+  handgun: {fileID: 0}
+  shotGun: {fileID: 0}
+  sniperGun: {fileID: 0}
+  machineGun: {fileID: 0}
+  handgunBullet: {fileID: 0}
+  shotGunBullet: {fileID: 0}
+  sniperBullet: {fileID: 0}
+  machinegunBullet: {fileID: 0}
+  Shotgun: {fileID: 0}
+  isShotgun: 0
   boostedSpeed: 5
   boostedFireRate: 0.25
 --- !u!212 &526104714
@@ -8261,7 +8271,10 @@ MonoBehaviour:
   bullet: {fileID: 9020807165172991127, guid: 1fa25dd40b013634f93cdca052d02c56, type: 3}
   bulletTransform: {fileID: 487492088}
   canFire: 1
+  Firetimer: 0
   timeBetweenFiring: 0.3
+  shotgunBullet1: {fileID: 0}
+  shotgunBullet2: {fileID: 0}
 --- !u!1 &841068853
 GameObject:
   m_ObjectHideFlags: 0
