@@ -33,8 +33,8 @@ public class Shooting : MonoBehaviour
 
         float rotZ = Mathf.Atan2(rotation.y, rotation.x) * Mathf.Rad2Deg;
 
-        transform.rotation = Quaternion.Euler(0, 0, rotZ);//test 
-        //transform.rotation = Quaternion.Euler(0, 0, rotZ - (rotZ / 2));
+        transform.rotation = Quaternion.Euler(0, 0, rotZ);
+    
 
         //flip gunsprite when player point gun at left side
         Vector3 alocalScale = Vector3.one;
