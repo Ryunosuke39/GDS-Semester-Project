@@ -1,10 +1,11 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class UIManager : MonoBehaviour
+public class UIManager : MonoBehaviour // from Jacky for win and lose UI panel
 {
     public void RestartGame()
     {
+        GameManager.Instance.ResumeGame();
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
@@ -21,4 +22,7 @@ public class UIManager : MonoBehaviour
     {
         SceneManager.LoadScene(0); 
     }
+
+
+
 }
