@@ -28871,6 +28871,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cameraFollow: {fileID: 1629444865}
   playerTransform: {fileID: 526104715}
+  winPanel: {fileID: 62748100}
+  losePanel: {fileID: 1396593355}
 --- !u!4 &1946689742
 Transform:
   m_ObjectHideFlags: 0

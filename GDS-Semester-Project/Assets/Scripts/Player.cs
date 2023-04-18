@@ -211,7 +211,14 @@ public class Player : MonoBehaviour
                 isPlayerDeathPlayed = true;
             }
             //Destroy(gameObject); produce error from camera follow scritp 
+             Die();//Jacky for lose panel
         }
+    }
+     
+     //Jacky for lose panel when player die
+    private void Die()
+    {
+        GameManager.Instance.PlayerLost();
     }
 
       //Various items function realization code from Jacky

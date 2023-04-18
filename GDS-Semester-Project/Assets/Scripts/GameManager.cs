@@ -12,6 +12,12 @@ public class GameManager : MonoBehaviour
 
     private bool isGameOver = false;
 
+    //Jacky for UI panel
+    public GameObject winPanel;
+    public GameObject losePanel;
+
+
+
     private void Awake()
     {
         if (Instance == null)
@@ -64,6 +70,7 @@ public class GameManager : MonoBehaviour
         isGameOver = true;
         Debug.Log("Lose!");
         Time.timeScale = 0f;
+        losePanel.SetActive(true);//lose panel
     }
 
     public void Win()
@@ -76,6 +83,7 @@ public class GameManager : MonoBehaviour
         isGameOver = true;
         Debug.Log("Win!");
         Time.timeScale = 0f;
+        winPanel.SetActive(true);//win panel
     }
 
     public void PlayerLost()
@@ -88,5 +96,6 @@ public class GameManager : MonoBehaviour
         isGameOver = true;
         Debug.Log("Lose!");
         Time.timeScale = 0f;
+         losePanel.SetActive(true);//lose panel
     }
 }
