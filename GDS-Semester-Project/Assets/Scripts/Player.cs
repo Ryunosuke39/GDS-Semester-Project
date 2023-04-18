@@ -12,6 +12,8 @@ public class Player : MonoBehaviour
     public float bulletDamage = 50f;
     public float fireRate = 0.5f;
     public float Health = 100.0f;
+    public float maxHealth = 100.0f;//Jacky
+
 
     //these two isplayerdead and is playerdeathplayed is for audio system for player
     private bool isPlayerDead = false;
@@ -57,6 +59,9 @@ public class Player : MonoBehaviour
         //bullBlueScript = gameObject.transform.FindChild("RotatePoint").GetComponent<BulletBlueScript>();
         //find current gun sprite reference 
         children = transform.GetComponentsInChildren<Transform>();
+
+        Health = maxHealth;//Jacky for HP UI
+
         
     }
 
