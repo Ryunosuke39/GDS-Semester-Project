@@ -6,6 +6,13 @@ TagManager:
   tags:
   - Bullet
   - Enemy
+  - gunDirection
+  - Shotgun
+  - Snipergun
+  - Machinegun
+  - ShotgunUp
+  - ShotgunDown
+  - Handgun
   layers:
   - Default
   - TransparentFX
@@ -13,7 +20,7 @@ TagManager:
   - 
   - Water
   - UI
-  - 
+  - Level1-Ground
   - 
   - 
   - 
@@ -42,4 +49,7 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Level1-Ground
+    uniqueID: 794667633
     locked: 0

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Player : MonoBehaviour
@@ -11,54 +12,74 @@ public class Player : MonoBehaviour
     public float bulletDamage = 50f;
     public float fireRate = 0.5f;
     public float Health = 100.0f;
-    public float maxHealth = 100.0f;
-
 
     //these two isplayerdead and is playerdeathplayed is for audio system for player
     private bool isPlayerDead = false;
     private bool isPlayerDeathPlayed = false;
 
+    //movement animatiom 
     private Rigidbody2D rb;
-    private Animator animator;
+    public Animator animator;
 
+    //for gun changeing reference
+    Transform[] children;
+    //Sprite currentGun;
+    //gun sprites
+    public Sprite handgun;
+    public Sprite shotGun;
+    public Sprite sniperGun;
+    public Sprite machineGun;
+    //different bullet 
+    public GameObject handgunBullet;
+    public GameObject shotGunBullet;
+    public GameObject sniperBullet;
+    public GameObject machinegunBullet;
+    //reference for scripts 
+    BulletBlueScript bullBlueScript;
+    Bullet bullte;
+
+    //what gun does player have?
+    public GameObject Shotgun;
+
+    //for shotgun
+    public bool isShotgun = false;
+
+    //player movement 
+    Vector2 movement;
 
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        animator = GetComponent<Animator>();
-        Health = maxHealth;
+        //animator = GetComponent<Animator>();
+
+        //references for gun changing 
+        //currentGun = gameObject.transform.FindChild("RotatePoint/BulletTransform/GunSprite");
+        //bullBlueScript = gameObject.transform.FindChild("RotatePoint").GetComponent<BulletBlueScript>();
+        //find current gun sprite reference 
+        children = transform.GetComponentsInChildren<Transform>();
+        
     }
 
     private void Update()
     {
-        ProcessInputs();//read input from player 
-
-        if(Health <= 0)
+        //ProcessInputs();//read input from player 
+        if (!isPlayerDead)
         {
-            GameManager.Instance.PlayerLost();
+            movement.x = Input.GetAxisRaw("Horizontal");
+            movement.y = Input.GetAxisRaw("Vertical");
+
+            //moveDirection = new Vector2(moveX, moveY).normalized;
+            animator.SetFloat("Horizontal", movement.x);
+            animator.SetFloat("Vertical", movement.y);
+            animator.SetFloat("Speed", movement.sqrMagnitude);
         }
+        
     }
 
     private void FixedUpdate()
     {
-        Move();//player movement 
-    }
-
-    void ProcessInputs()
-    {
-        if (!isPlayerDead)
-        {
-            float moveX = Input.GetAxisRaw("Horizontal");
-            float moveY = Input.GetAxisRaw("Vertical");
-
-            moveDirection = new Vector2(moveX, moveY).normalized;
-        }
-    }
-
-    void Move()
-    {
-        //if(!isPlayerDead)
-        rb.velocity = new Vector2(moveDirection.x * moveSpeed, moveDirection.y * moveSpeed);
+        //Move();//player movement 
+        rb.MovePosition(rb.position + movement * moveSpeed * Time.fixedDeltaTime);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -68,7 +89,95 @@ public class Player : MonoBehaviour
             Destroy(collision.gameObject);
         }
     }
-    
+
+    //gun change 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        //hand gun
+        if(collision.tag == "Handgun")
+        {
+            Debug.Log("Handgun collide");
+            isShotgun = false;
+            foreach(var child in children)
+            {
+                if(child.name == "GunSprit")
+                {
+                    child.GetComponent<SpriteRenderer>().sprite = handgun; //change sprite
+                }
+                if(child.name == "RotatePoint")
+                {
+                    child.GetComponent<Shooting>().bullet = handgunBullet;//change bullet prefad to handgun one
+                    child.GetComponent<Shooting>().timeBetweenFiring = 0.5f;
+                    //for damage, check bullet prefab 
+                }
+            }
+        }
+
+        //gun change 
+        //shot gun
+        if (collision.tag == "Shotgun")
+        {
+            Debug.Log("shotGun collide");
+            isShotgun = true;
+            foreach (var child in children)
+            {
+                if (child.name == "GunSprit")
+                {
+                    child.GetComponent<SpriteRenderer>().sprite = shotGun; //change sprite
+                }
+                if(child.name == "RotatePoint")
+                {
+                    child.GetComponent<Shooting>().bullet = shotGunBullet;//change bullet prefab to shotgun one(certal bullet)
+                    child.GetComponent<Shooting>().timeBetweenFiring = 2f;
+                    //for damage, check prehab 
+                }
+            }
+        }
+
+        //sniper
+        //gun change 
+        if (collision.tag == "Snipergun")
+        {
+            
+            Debug.Log("Snipergun collide" + isShotgun);
+            isShotgun = false;
+            foreach (var child in children)
+            {
+                if (child.name == "GunSprit")
+                {
+                    child.GetComponent<SpriteRenderer>().sprite = sniperGun; //change sprite
+                }
+                if(child.name == "RotatePoint")
+                {
+                    child.GetComponent<Shooting>().bullet = sniperBullet;
+                    child.GetComponent<Shooting>().timeBetweenFiring = 5f;//5 second to reload
+                    //for damage, check prehab 
+                }
+            }
+        }
+
+        //Machinegun
+        //gun change 
+        if (collision.tag == "Machinegun")
+        {
+            Debug.Log("Machinegun collide");
+            isShotgun = false;
+            foreach (var child in children)
+            {
+                if (child.name == "GunSprit")
+                {
+                    child.GetComponent<SpriteRenderer>().sprite = machineGun; //change sprite
+                }
+                if(child.name == "RotatePoint")
+                {
+                    child.GetComponent<Shooting>().bullet = machinegunBullet;
+                    child.GetComponent<Shooting>().timeBetweenFiring = 0.1f;
+                    //for damage, check prehab 
+                }
+            }
+        }
+    }
+
     private void LateUpdate()
     {
         // Destroy bullets that leave the camera view
@@ -83,7 +192,6 @@ public class Player : MonoBehaviour
 
     public void TakeDamage(float damage)
     {
-         Debug.Log("Player takes damage: " + damage);
         Health -= damage;
         if(!isPlayerDead)
         FindObjectOfType<AudioManager>().Play("PlayerInjured"); //audio manager //a bit slow???
@@ -98,7 +206,6 @@ public class Player : MonoBehaviour
                 isPlayerDeathPlayed = true;
             }
             //Destroy(gameObject); produce error from camera follow scritp 
-            //gameObject.SetActive(false);
         }
     }
 

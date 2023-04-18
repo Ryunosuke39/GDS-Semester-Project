@@ -10,9 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 4481993004902735409}
   - component: {fileID: 5768655148024122401}
-  - component: {fileID: 5101078301485410755}
   - component: {fileID: 6210797739634334255}
   - component: {fileID: 7800868972859654458}
+  - component: {fileID: 5101078301485410755}
   - component: {fileID: -3408634568984927236}
   m_Layer: 0
   m_Name: BulletBlue
@@ -88,19 +88,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &5101078301485410755
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9020807165172991127}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8040d79b5087ce14e922534faca6eb5c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  force: 10
 --- !u!50 &6210797739634334255
 Rigidbody2D:
   serializedVersion: 4
@@ -163,6 +150,19 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0}
   m_Size: {x: 0.34, y: 0.16}
   m_Direction: 0
+--- !u!114 &5101078301485410755
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9020807165172991127}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8040d79b5087ce14e922534faca6eb5c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  force: 10
 --- !u!114 &-3408634568984927236
 MonoBehaviour:
   m_ObjectHideFlags: 0
