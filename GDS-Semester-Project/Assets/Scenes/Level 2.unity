@@ -8017,7 +8017,8 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 731320665, guid: f2bc55b584e7c3a46b345aca50dbecee, type: 3}
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 6003391756181416491, guid: f2bc55b584e7c3a46b345aca50dbecee, type: 3}
       insertIndex: -1
@@ -28584,7 +28585,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 13
+  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &2115072106
 SpriteRenderer:
@@ -28683,7 +28684,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2994534791617414089, guid: 0ccf69b56385c6945a9b8b5335bde36d, type: 3}
       propertyPath: m_RootOrder
-      value: 14
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 2994534791617414089, guid: 0ccf69b56385c6945a9b8b5335bde36d, type: 3}
       propertyPath: m_LocalPosition.x
