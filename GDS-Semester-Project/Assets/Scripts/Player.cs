@@ -85,7 +85,7 @@ public class Player : MonoBehaviour
         // {
         // return;
         // }
-        
+
     }
 
     private void FixedUpdate()
@@ -215,12 +215,14 @@ public class Player : MonoBehaviour
 
         if (Health <= 0)
         {
+            animator.SetBool("Dead", true);
             Health = 0;
             isPlayerDead = true;
             if (isPlayerDead && !isPlayerDeathPlayed)
             {
                 FindObjectOfType<AudioManager>().Play("PlayerDeath"); //Audio Manager
-                isPlayerDeathPlayed = true;
+                //animator.SetBool("Dead", true);  //player player dead animation 
+                isPlayerDeathPlayed =true;
             }
             //Destroy(gameObject); produce error from camera follow scritp 
              Die();//Jacky for lose panel
