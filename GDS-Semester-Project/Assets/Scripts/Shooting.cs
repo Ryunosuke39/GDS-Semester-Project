@@ -27,12 +27,14 @@ public class Shooting : MonoBehaviour
 
     void Update()
     {
-        //shooting range is set to 360 degree 
-        mousePos = mainCam.ScreenToWorldPoint(Input.mousePosition);    
+        mousePos = mainCam.ScreenToWorldPoint(Input.mousePosition);
+        
         Vector3 rotation = mousePos - transform.position;
+
         float rotZ = Mathf.Atan2(rotation.y, rotation.x) * Mathf.Rad2Deg;
-        transform.rotation = Quaternion.Euler(0, 0, rotZ);
-    
+
+        transform.rotation = Quaternion.Euler(0, 0, rotZ);//test 
+        //transform.rotation = Quaternion.Euler(0, 0, rotZ - (rotZ / 2));
 
         //flip gunsprite when player point gun at left side
         Vector3 alocalScale = Vector3.one;
@@ -69,4 +71,6 @@ public class Shooting : MonoBehaviour
             
         }
     }
+
+    
 }

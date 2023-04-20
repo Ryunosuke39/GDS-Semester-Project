@@ -12,6 +12,12 @@ public class GameManager : MonoBehaviour
 
     private bool isGameOver = false;
 
+    //Jacky for UI panel
+    public GameObject winPanel;
+    public GameObject losePanel;
+
+
+
     private void Awake()
     {
         if (Instance == null)
@@ -64,6 +70,7 @@ public class GameManager : MonoBehaviour
         isGameOver = true;
         Debug.Log("Lose!");
         Time.timeScale = 0f;
+        losePanel.SetActive(true);//lose panel
     }
 
     public void Win()
@@ -76,6 +83,8 @@ public class GameManager : MonoBehaviour
         isGameOver = true;
         Debug.Log("Win!");
         Time.timeScale = 0f;
+        winPanel.SetActive(true);//win panel jacky
+         PauseGame();//jacky
     }
 
     public void PlayerLost()
@@ -88,5 +97,29 @@ public class GameManager : MonoBehaviour
         isGameOver = true;
         Debug.Log("Lose!");
         Time.timeScale = 0f;
+         losePanel.SetActive(true);//lose panel jacky
+         PauseGame();//jacky
     }
+
+    //Jacky for Pause and Resume game when the win and lose panel showing
+    public void PauseGame()
+    {
+       Time.timeScale = 0;
+    //    Player player = FindObjectOfType<Player>();
+    //    if (player != null)
+    //    {
+    //     player.isGamePaused = true;
+    //    }
+    }
+
+    public void ResumeGame()
+    {
+       Time.timeScale = 1;
+    //    Player player = FindObjectOfType<Player>();
+    //    if (player != null)
+    //    {
+    //     player.isGamePaused = false;
+    //    }
+    }
+
 }
