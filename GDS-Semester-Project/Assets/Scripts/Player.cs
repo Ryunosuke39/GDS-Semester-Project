@@ -220,6 +220,7 @@ public class Player : MonoBehaviour
             if (isPlayerDead && !isPlayerDeathPlayed)
             {
                 FindObjectOfType<AudioManager>().Play("PlayerDeath"); //Audio Manager
+                animator.SetBool("Dead", true); //player player dead animation 
                 isPlayerDeathPlayed = true;
             }
             //Destroy(gameObject); produce error from camera follow scritp 
