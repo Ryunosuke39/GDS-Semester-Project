@@ -215,7 +215,7 @@ public class Player : MonoBehaviour
 
         if (Health <= 0)
         {
-            //animator.SetBool("Dead", true);
+            animator.SetBool("Dead", true);
             Health = 0;
             isPlayerDead = true;
             if (isPlayerDead && !isPlayerDeathPlayed)
