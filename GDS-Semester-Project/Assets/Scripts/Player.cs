@@ -12,6 +12,10 @@ public class Player : MonoBehaviour
     public float bulletDamage = 50f;
     public float fireRate = 0.5f;
     public float Health = 100.0f;
+    public float maxHealth = 100.0f;//Jacky
+    //public bool isGamePaused = false;//Jacky for win lose panel
+
+
 
     //these two isplayerdead and is playerdeathplayed is for audio system for player
     private bool isPlayerDead = false;
@@ -57,6 +61,9 @@ public class Player : MonoBehaviour
         //bullBlueScript = gameObject.transform.FindChild("RotatePoint").GetComponent<BulletBlueScript>();
         //find current gun sprite reference 
         children = transform.GetComponentsInChildren<Transform>();
+
+        Health = maxHealth;//Jacky for HP UI
+
         
     }
 
@@ -73,13 +80,23 @@ public class Player : MonoBehaviour
             animator.SetFloat("Vertical", movement.y);
             animator.SetFloat("Speed", movement.sqrMagnitude);
         }
-        
+
+        // if (isGamePaused) //Jacky for win lose panel
+        // {
+        // return;
+        // }
+
     }
 
     private void FixedUpdate()
     {
         //Move();//player movement 
         rb.MovePosition(rb.position + movement * moveSpeed * Time.fixedDeltaTime);
+
+        //   if (isGamePaused) //Jacky for win lose panel
+        // {
+        // return;
+        // }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -198,15 +215,24 @@ public class Player : MonoBehaviour
 
         if (Health <= 0)
         {
+            //animator.SetBool("Dead", true);
             Health = 0;
             isPlayerDead = true;
             if (isPlayerDead && !isPlayerDeathPlayed)
             {
                 FindObjectOfType<AudioManager>().Play("PlayerDeath"); //Audio Manager
-                isPlayerDeathPlayed = true;
+                //animator.SetBool("Dead", true);  //player player dead animation 
+                isPlayerDeathPlayed =true;
             }
             //Destroy(gameObject); produce error from camera follow scritp 
+             Die();//Jacky for lose panel
         }
+    }
+     
+     //Jacky for lose panel when player die
+    private void Die()
+    {
+        GameManager.Instance.PlayerLost();
     }
 
       //Various items function realization code from Jacky
