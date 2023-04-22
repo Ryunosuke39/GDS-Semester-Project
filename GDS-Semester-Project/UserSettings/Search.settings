@@ -7,6 +7,12 @@ onBoardingDoNotAskAgain = true
 showPackageIndexes = false
 showStatusBar = false
 scopes = {
+	"last_search.D379D912" = ""
+	"OpenInspectorPreview.D379D912" = "0"
+	"currentGroup.D379D912" = "all"
+	"last_search.388C2F70" = ""
+	"OpenInspectorPreview.388C2F70" = "0"
+	"currentGroup.388C2F70" = "all"
 }
 providers = {
 	adb = {
