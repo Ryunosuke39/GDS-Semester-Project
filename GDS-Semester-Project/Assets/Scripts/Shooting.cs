@@ -19,6 +19,10 @@ public class Shooting : MonoBehaviour
     public GameObject shotgunBullet1;
     public GameObject shotgunBullet2;
 
+    //Jacky for flashLight
+    public GameObject flashlight;
+ 
+
     void Start()
     {
         mainCam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
@@ -70,6 +74,12 @@ public class Shooting : MonoBehaviour
             }
             
         }
+
+
+        //Jacky for flashLight
+        flashlight.transform.rotation = Quaternion.Euler(0, 0, rotZ - 90);
+        transform.rotation = Quaternion.Euler(0, 0, rotZ);
+
     }
 
     
