@@ -21,7 +21,7 @@ public class Shooting : MonoBehaviour
     public GameObject shotgunBullet2;
 
     //Jacky for flashLight
-    public UnityEngine.Rendering.Universal.Light2D flashlight;
+    public GameObject flashlight;
 
     void Start()
     {
@@ -79,7 +79,9 @@ public class Shooting : MonoBehaviour
         // Toggle flashlight on/off when player presses F
         if (Input.GetKeyDown(KeyCode.F))
         {
-            flashlight.enabled = !flashlight.enabled;
+           Light flashlightLight = flashlight.GetComponent<Light>();
+           flashlightLight.enabled = !flashlightLight.enabled;
+
         }
     }
 }
