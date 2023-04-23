@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
+
 public class Shooting : MonoBehaviour
 {
     private Camera mainCam;
@@ -20,8 +21,7 @@ public class Shooting : MonoBehaviour
     public GameObject shotgunBullet2;
 
     //Jacky for flashLight
-    public GameObject flashlight;
- 
+    public UnityEngine.Rendering.Universal.Light2D flashlight;
 
     void Start()
     {
@@ -32,15 +32,13 @@ public class Shooting : MonoBehaviour
     void Update()
     {
         mousePos = mainCam.ScreenToWorldPoint(Input.mousePosition);
-        
+
         Vector3 rotation = mousePos - transform.position;
 
         float rotZ = Mathf.Atan2(rotation.y, rotation.x) * Mathf.Rad2Deg;
 
-        transform.rotation = Quaternion.Euler(0, 0, rotZ);//test 
-        //transform.rotation = Quaternion.Euler(0, 0, rotZ - (rotZ / 2));
+        transform.rotation = Quaternion.Euler(0, 0, rotZ);
 
-        //flip gunsprite when player point gun at left side
         Vector3 alocalScale = Vector3.one;
         if(rotZ > 90 || rotZ < -90)
         {
@@ -52,7 +50,6 @@ public class Shooting : MonoBehaviour
         }
         transform.localScale = alocalScale;
 
-        //Fire rate 
         if(!canFire)
         {
             Firetimer += Time.deltaTime;
@@ -75,12 +72,14 @@ public class Shooting : MonoBehaviour
             
         }
 
-
         //Jacky for flashLight
         flashlight.transform.rotation = Quaternion.Euler(0, 0, rotZ - 90);
         transform.rotation = Quaternion.Euler(0, 0, rotZ);
 
+        // Toggle flashlight on/off when player presses F
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            flashlight.enabled = !flashlight.enabled;
+        }
     }
-
-    
 }
