@@ -13,11 +13,12 @@ TagManager:
   - ShotgunUp
   - ShotgunDown
   - Handgun
+  - Wall
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Wall
   - Water
   - UI
   - Level1-Ground
