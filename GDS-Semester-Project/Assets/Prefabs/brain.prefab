@@ -127,10 +127,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27272e3a9d0623b48b952f452b614395, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 1.5
+  speed: 3
   maxHp: 150
   currentHp: 0
-  attackDamage: 34
+  attackDamage: 50
   attackDelay: 1
 --- !u!61 &2644207497436662182
 BoxCollider2D:
