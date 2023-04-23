@@ -7,6 +7,7 @@ public class UIManager : MonoBehaviour // from Jacky for win and lose UI panel
     {
         GameManager.Instance.ResumeGame();
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        Time.timeScale = 1f;
     }
 
     public void LoadNextLevel()
@@ -16,11 +17,13 @@ public class UIManager : MonoBehaviour // from Jacky for win and lose UI panel
         {
             SceneManager.LoadScene(nextSceneIndex);
         }
+        Time.timeScale = 1f;
     }
 
     public void LoadLevelMenu()
     {
-        SceneManager.LoadScene(0); 
+        SceneManager.LoadScene(0);
+        Time.timeScale = 1f;
     }
 
 
