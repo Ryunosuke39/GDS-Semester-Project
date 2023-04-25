@@ -476,7 +476,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1588432892}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.14, y: 0, z: 0}
+  m_LocalPosition: {x: 1.683, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -508,7 +508,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1904381968}
   m_LocalRotation: {x: -0, y: -0, z: 0.57262325, w: 0.8198186}
-  m_LocalPosition: {x: -0.055, y: -0.027, z: 0}
+  m_LocalPosition: {x: -0.088, y: -0.027, z: 0}
   m_LocalScale: {x: 0.2, y: 0.2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -555,7 +555,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 10
   m_Sprite: {fileID: 21300000, guid: 4b8beb3955abc1547869ec515d8a5a15, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -669,7 +669,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1972854081}
   m_LocalRotation: {x: -0, y: -0, z: 0.9968806, w: 0.07892521}
-  m_LocalPosition: {x: -0.076, y: -0.044, z: 0}
+  m_LocalPosition: {x: -0.117, y: -0.044, z: 0}
   m_LocalScale: {x: 0.2, y: 0.2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -716,7 +716,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 10
   m_Sprite: {fileID: 21300000, guid: 4b8beb3955abc1547869ec515d8a5a15, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -753,7 +753,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6003391755464584863}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.037, y: -0.023, z: 0}
+  m_LocalPosition: {x: -0.08, y: -0.023, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -867,6 +867,7 @@ MonoBehaviour:
   timeBetweenFiring: 0.3
   shotgunBullet1: {fileID: 264768848138928185, guid: 9292708b31dadcb42b97c34cae86d1b0, type: 3}
   shotgunBullet2: {fileID: 3146094914177286775, guid: 0fcc34742069b90458e08e8aa51f12e8, type: 3}
+  flashlight: {fileID: 0}
 --- !u!1 &6003391756181416489
 GameObject:
   m_ObjectHideFlags: 0
@@ -906,7 +907,7 @@ Transform:
   - {fileID: 754213700}
   - {fileID: 731320666}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &6003391756181416490
 SpriteRenderer:
@@ -1240,7 +1241,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6003391757272452904}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.72, y: 0.045, z: 0}
+  m_LocalPosition: {x: 0.884, y: 0.045, z: 0}
   m_LocalScale: {x: 4, y: 4, z: 4}
   m_ConstrainProportionsScale: 0
   m_Children:
