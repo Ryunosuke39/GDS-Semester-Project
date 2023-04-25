@@ -15,7 +15,7 @@ public class Shooting : MonoBehaviour
     public float timeBetweenFiring;
 
     //reference to player 
-    Player player;
+    public Player player;
     //for shotgun
     public GameObject shotgunBullet1;
     public GameObject shotgunBullet2;
@@ -26,11 +26,21 @@ public class Shooting : MonoBehaviour
     void Start()
     {
         mainCam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
-        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
+    GameObject playerObject = GameObject.FindGameObjectWithTag("Player");
+
+    if (playerObject != null)
+    {
+        player = playerObject.GetComponent<Player>();
+    }
+    else
+    {
+        Debug.LogWarning("Player object not found!");
+    }
     }
 
     void Update()
     {
+        Debug.Log("Player object: " + player);
         mousePos = mainCam.ScreenToWorldPoint(Input.mousePosition);
 
         Vector3 rotation = mousePos - transform.position;
@@ -64,7 +74,7 @@ public class Shooting : MonoBehaviour
             canFire = false;
             Instantiate(bullet, bulletTransform.position, Quaternion.identity);
             
-            if(player.isShotgun)
+            if(player != null && player.isShotgun)
             {
                 Instantiate(shotgunBullet1, bulletTransform.position, Quaternion.identity);
                 Instantiate(shotgunBullet2, bulletTransform.position, Quaternion.identity);
