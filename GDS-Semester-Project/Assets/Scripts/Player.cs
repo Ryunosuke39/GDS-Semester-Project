@@ -227,6 +227,7 @@ public class Player : MonoBehaviour
             //Destroy(gameObject); produce error from camera follow scritp 
              Die();//Jacky for lose panel
         }
+         OnHealthChanged?.Invoke(Health);//Jacky 
     }
      
      //Jacky for lose panel when player die
@@ -281,7 +282,12 @@ public void AddHealth(float amount)
     {
         Health = maxHealth;
     }
+    OnHealthChanged?.Invoke(Health);
 }
+
+//Jacky for update UI HP
+public delegate void HealthChangedDelegate(float health);
+public event HealthChangedDelegate OnHealthChanged;
 
 
     

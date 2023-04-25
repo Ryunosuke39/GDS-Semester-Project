@@ -13,13 +13,18 @@ public class HealthBarUI : MonoBehaviour
       void Start()
     {
         mainCamera = Camera.main;
+        player.OnHealthChanged += UpdateHealthBar;
     }
 
-    void Update()
-    {
+    void UpdateHealthBar(float health)
+{
+    float healthPercent = health / player.maxHealth;
+    healthBar.fillAmount = healthPercent;
+    healthBarCanvas.transform.LookAt(mainCamera.transform);
+}
 
-         float healthPercent = player.Health / player.maxHealth;
-        healthBar.fillAmount = healthPercent;
-        healthBarCanvas.transform.LookAt(mainCamera.transform);
-    }
+    void OnDestroy()
+{
+    player.OnHealthChanged -= UpdateHealthBar;
+}
 }
