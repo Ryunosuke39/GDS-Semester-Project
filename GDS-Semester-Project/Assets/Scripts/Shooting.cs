@@ -40,7 +40,7 @@ public class Shooting : MonoBehaviour
 
     void Update()
     {
-        Debug.Log("Player object: " + player);
+        //Debug.Log("Player object: " + player);
         mousePos = mainCam.ScreenToWorldPoint(Input.mousePosition);
 
         Vector3 rotation = mousePos - transform.position;
