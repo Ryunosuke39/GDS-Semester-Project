@@ -14,45 +14,51 @@ public class ItemSpawnerController : MonoBehaviour
         StartCoroutine(SpawnItems());
     }
 
-    IEnumerator SpawnItems()
+ IEnumerator SpawnItems()
 {
     while (true)
     {
         yield return new WaitForSeconds(spawnInterval);
 
-        int randomIndex = Random.Range(0, itemPrefabs.Length);
-        Vector2 spawnPosition = new Vector2(Random.Range(-spawnRange.x, spawnRange.x), Random.Range(-spawnRange.y, spawnRange.y));
+        int minItemsToSpawn = 1;
+        int maxItemsToSpawn = 4;
+        int itemsToSpawn = Random.Range(minItemsToSpawn, maxItemsToSpawn + 1);
 
-        GameObject itemObject = null;
-
-        if (pooledItems.Count > 0)
+        for (int i = 0; i < itemsToSpawn; i++)
         {
-            itemObject = pooledItems[0];
-            pooledItems.RemoveAt(0);
+            int randomIndex = Random.Range(0, itemPrefabs.Length);
+            Vector2 spawnPosition = new Vector2(Random.Range(-spawnRange.x, spawnRange.x), Random.Range(-spawnRange.y, spawnRange.y));
 
-            // Check if the item object is null before activating it
+            GameObject itemObject = null;
+
+            if (pooledItems.Count > 0)
+            {
+                itemObject = pooledItems[0];
+                pooledItems.RemoveAt(0);
+
+                // Check if the item object is null before activating it
+                if (itemObject != null)
+                {
+                    itemObject.SetActive(true);
+                }
+            }
+            else
+            {
+                // Check if the item prefab is null before instantiating it
+                if (itemPrefabs[randomIndex] != null)
+                {
+                    itemObject = Instantiate(itemPrefabs[randomIndex], spawnPosition, Quaternion.identity);
+                }
+            }
+
+            // Check if the item object is null before setting its position
             if (itemObject != null)
             {
-                itemObject.SetActive(true);
+                itemObject.transform.position = spawnPosition;
             }
-        }
-        else
-        {
-            // Check if the item prefab is null before instantiating it
-            if (itemPrefabs[randomIndex] != null)
-            {
-                itemObject = Instantiate(itemPrefabs[randomIndex], spawnPosition, Quaternion.identity);
-            }
-        }
-
-        // Check if the item object is null before setting its position
-        if (itemObject != null)
-        {
-            itemObject.transform.position = spawnPosition;
         }
     }
 }
-
 }
 
 

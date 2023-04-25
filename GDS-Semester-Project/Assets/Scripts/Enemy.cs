@@ -62,11 +62,20 @@ public class Enemy : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Player") && !isAttacking)
+        if (collision.CompareTag("Player"))
+    {
+        Player player = collision.GetComponent<Player>();
+        if (player != null && !isAttacking)
         {
             isAlive = false;
-            StartCoroutine(AttackPlayer(collision.GetComponent<Player>()));
+            StartCoroutine(AttackPlayer(player));
         }
+        else
+        {
+            Debug.LogWarning($"Player component not found on collided object: {collision.gameObject.name}");
+
+        }
+    }
     }
 
     public void TakeDamage(float damage)
