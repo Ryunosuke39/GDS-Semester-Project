@@ -227,6 +227,7 @@ public class Player : MonoBehaviour
             //Destroy(gameObject); produce error from camera follow scritp 
              Die();//Jacky for lose panel
         }
+         OnHealthChanged?.Invoke(Health);//Jacky 
     }
      
      //Jacky for lose panel when player die
@@ -236,34 +237,59 @@ public class Player : MonoBehaviour
     }
 
       //Various items function realization code from Jacky
-      //Item2
-      public float boostedSpeed = 8f;//run fast
-      private IEnumerator BoostSpeedCoroutine(float duration)
-    {
-        float originalSpeed = moveSpeed;
-        moveSpeed = boostedSpeed;
-        yield return new WaitForSeconds(duration);
-        moveSpeed = originalSpeed;
-    }
+      // Item2
+private IEnumerator BoostSpeedCoroutine(float duration, float boostedSpeed)
+{
+    float originalSpeed = moveSpeed;
+    moveSpeed = boostedSpeed;
+    Debug.Log("BoostSpeedCoroutine: Speed increased to " + moveSpeed);
+    yield return new WaitForSeconds(duration);
+    moveSpeed = originalSpeed;
+    Debug.Log("BoostSpeedCoroutine: Speed reset to " + moveSpeed);
+}
 
-     public void BoostSpeed(float duration)
-    {
-        StartCoroutine(BoostSpeedCoroutine(duration));
-    }
+public void BoostSpeed(float duration)
+{
+    float boostedSpeed = moveSpeed * 1.5f;
+    Debug.Log("Player.BoostSpeed called");
+    StartCoroutine(BoostSpeedCoroutine(duration, boostedSpeed));
+}
 
-    //Item1
-    public float boostedFireRate = 0.025f;//fire fast
-    public void BoostFireRate(float duration)
-   {
-    StartCoroutine(BoostFireRateCoroutine(duration));
-   }
-   private IEnumerator BoostFireRateCoroutine(float duration)
-   {
+// Item1
+private IEnumerator BoostFireRateCoroutine(float duration, float boostedFireRate)
+{
     float originalFireRate = fireRate;
     fireRate = boostedFireRate;
+    Debug.Log("BoostFireRateCoroutine: Fire rate increased to " + fireRate);
     yield return new WaitForSeconds(duration);
     fireRate = originalFireRate;
-   }
+    Debug.Log("BoostFireRateCoroutine: Fire rate reset to " + fireRate);
+}
+
+public void BoostFireRate(float duration)
+{
+    float boostedFireRate = fireRate * 15f;
+    Debug.Log("Player.BoostFireRate called");
+    StartCoroutine(BoostFireRateCoroutine(duration, boostedFireRate));
+}
+
+// Item0 add HP
+public void AddHealth(float amount)
+{
+    Debug.Log("Player.AddHealth called");
+    Health += amount;
+    if (Health > maxHealth)
+    {
+        Health = maxHealth;
+    }
+    OnHealthChanged?.Invoke(Health);
+}
+
+//Jacky for update UI HP
+public delegate void HealthChangedDelegate(float health);
+public event HealthChangedDelegate OnHealthChanged;
+
+
     
 
 }

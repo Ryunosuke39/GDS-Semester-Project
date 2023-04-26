@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 1513284855018507793}
   - component: {fileID: 5910126314429287880}
   m_Layer: 0
-  m_Name: Item0
+  m_Name: 4-Item0
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -29,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 5793565939131075153}
   m_LocalRotation: {x: 0.005759512, y: -0, z: -0, w: 0.99998343}
   m_LocalPosition: {x: -462.99228, y: -204.70949, z: -0.6156659}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -55,7 +55,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -101,7 +101,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemType: 0
   healthAmount: 30
-  boostDuration: 15
+  boostDuration: 5
 --- !u!61 &1513284855018507793
 BoxCollider2D:
   m_ObjectHideFlags: 0
