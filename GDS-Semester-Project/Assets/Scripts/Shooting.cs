@@ -4,6 +4,7 @@ using UnityEditor;
 using UnityEngine;
 
 
+
 public class Shooting : MonoBehaviour
 {
     private Camera mainCam;
@@ -89,9 +90,12 @@ public class Shooting : MonoBehaviour
         // Toggle flashlight on/off when player presses F
         if (Input.GetKeyDown(KeyCode.F))
         {
-           Light flashlightLight = flashlight.GetComponent<Light>();
-           flashlightLight.enabled = !flashlightLight.enabled;
-
+             Debug.Log("F key");
+            UnityEngine.Rendering.Universal.Light2D flashlightLight = flashlight.GetComponent<UnityEngine.Rendering.Universal.Light2D>();
+            flashlightLight.enabled = !flashlightLight.enabled;
+            Debug.Log("Flashlight enabled: " + flashlightLight.enabled);
         }
+
     }
+    
 }
