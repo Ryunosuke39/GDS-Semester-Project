@@ -105,6 +105,15 @@ public class Player : MonoBehaviour
         if (collision.gameObject.CompareTag("Bullet")) {
             Destroy(collision.gameObject);
         }
+
+        if(collision.gameObject.CompareTag("Boss"))
+        {
+            Level2Boss boss = collision.gameObject.GetComponent<Level2Boss>();
+            if(boss != null)
+            {
+                boss.TakeDamage(bulletDamage);
+            }
+        }
     }
 
     //gun change 
@@ -145,7 +154,7 @@ public class Player : MonoBehaviour
                 if(child.name == "RotatePoint")
                 {
                     child.GetComponent<Shooting>().bullet = shotGunBullet;//change bullet prefab to shotgun one(certal bullet)
-                    child.GetComponent<Shooting>().timeBetweenFiring = 2f;
+                    child.GetComponent<Shooting>().timeBetweenFiring = 0.5f;
                     //for damage, check prehab 
                 }
             }
@@ -167,7 +176,7 @@ public class Player : MonoBehaviour
                 if(child.name == "RotatePoint")
                 {
                     child.GetComponent<Shooting>().bullet = sniperBullet;
-                    child.GetComponent<Shooting>().timeBetweenFiring = 5f;//5 second to reload
+                    child.GetComponent<Shooting>().timeBetweenFiring = 2f;//5 second to reload
                     //for damage, check prehab 
                 }
             }
