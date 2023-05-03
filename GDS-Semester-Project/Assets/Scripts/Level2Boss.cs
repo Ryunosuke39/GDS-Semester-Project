@@ -63,6 +63,11 @@ public class Level2Boss : MonoBehaviour
 
     private void Die()
     {
-        
+        Destroy(gameObject);
+
+        if(healthBarUI != null)
+        {
+            Destroy(healthBarUI);
+        }
     }
 }
