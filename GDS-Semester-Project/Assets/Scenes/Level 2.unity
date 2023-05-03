@@ -28179,6 +28179,9 @@ MonoBehaviour:
   health: 1000
   healthBarUI: {fileID: 882964523}
   healthSlider: {fileID: 1217407238}
+  bossBulletPrefab: {fileID: 1138211247793099325, guid: 798e7ee39c22dc64c80a837b7212b14b, type: 3}
+  skillCooldown: 2
+  bulletSpeed: 5
 --- !u!4 &1628858679
 Transform:
   m_ObjectHideFlags: 0
@@ -28187,7 +28190,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1628858677}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.73, y: -8.11, z: 2.9964848}
+  m_LocalPosition: {x: -3.07, y: -7.76, z: 2.9964848}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

@@ -9,13 +9,18 @@ public class Level2Boss : MonoBehaviour
     private float maxHealth;
     public GameObject healthBarUI;
     public Slider healthSlider;
+    public GameObject bossBulletPrefab;
+    public float skillCooldown = 5f;
+    public float bulletSpeed = 5f;
 
     private Player player;
+    private float skillTimer;
 
     void Start()
     {
         maxHealth = health;
         player = FindObjectOfType<Player>();
+        skillTimer = skillCooldown;
     }
 
     void Update()
@@ -24,6 +29,12 @@ public class Level2Boss : MonoBehaviour
         if (distanceToPlayer < 10f) 
         {
             healthBarUI.SetActive(true);
+            skillTimer -= Time.deltaTime;
+            if(skillTimer <= 0)
+            {
+                SpawnBullets();
+                skillTimer = skillCooldown;
+            }
         }
         else
         {
@@ -31,6 +42,29 @@ public class Level2Boss : MonoBehaviour
         }
 
         healthSlider.value = health / maxHealth;
+    }
+
+    private void SpawnBullets()
+    {
+        int numberOfFans = 5;
+        int numberOfBulletsPerFan = 10;
+        float angleBetweenBullets = 10f;
+
+        float randomAngleOffset = Random.Range(-45f, 45f);
+
+        for(int fan = 0; fan < numberOfFans; fan++)
+        {
+            float initialAngle = fan * 360f / numberOfFans;
+
+            for(int i = 0; i < numberOfBulletsPerFan; i++)
+            {
+                float angle = initialAngle + i * angleBetweenBullets + randomAngleOffset;
+                Vector3 direction = Quaternion.Euler(0, 0, angle) * Vector3.right;
+
+                GameObject bullet = Instantiate(bossBulletPrefab, transform.position, Quaternion.identity);
+                bullet.GetComponent<Rigidbody2D>().velocity = direction * bulletSpeed;
+            }
+        }
     }
 
     public void TakeDamage(float damage)
@@ -56,7 +90,7 @@ public class Level2Boss : MonoBehaviour
             }
             else
             {
-                Debug.LogWarning("Bullet component not found on collided object");
+                
             }
         }
     }
