@@ -15,6 +15,8 @@ public class Level2Boss : MonoBehaviour
 
     private Player player;
     private float skillTimer;
+    private bool playerInRange = false;
+    
 
     void Start()
     {
@@ -26,7 +28,11 @@ public class Level2Boss : MonoBehaviour
     void Update()
     {
         float distanceToPlayer = Vector3.Distance(transform.position, player.transform.position);
-        if (distanceToPlayer < 10f) 
+        if (distanceToPlayer < 10f && !playerInRange) 
+        {
+            playerInRange = true;
+        }
+        if(playerInRange)
         {
             healthBarUI.SetActive(true);
             skillTimer -= Time.deltaTime;
