@@ -43256,7 +43256,7 @@ MonoBehaviour:
   healthBarUI: {fileID: 838012190}
   healthSlider: {fileID: 1519454953}
   bossBulletPrefab: {fileID: 1138211247793099325, guid: 798e7ee39c22dc64c80a837b7212b14b, type: 3}
-  skillCooldown: 3
+  skillCooldown: 1.5
   bulletSpeed: 5
   bossRapidBulletPrefab: {fileID: 7218364836991395904, guid: 9af6493cbdd4d234a9428fe3cc0eeda1, type: 3}
   homingBulletSpeed: 5
