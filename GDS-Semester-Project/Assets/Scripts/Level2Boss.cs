@@ -22,6 +22,9 @@ public class Level2Boss : MonoBehaviour
     public int bulletPerDirection = 10;
     public float rotationSpeed = 45f;
 
+    public GameObject door1;
+    public GameObject door2;
+
     private Player player;
     private float skillTimer;
     private bool playerInRange = false;
@@ -32,6 +35,9 @@ public class Level2Boss : MonoBehaviour
         maxHealth = health;
         player = FindObjectOfType<Player>();
         skillTimer = skillCooldown;
+
+        door1.SetActive(false);
+        door2.SetActive(false);
     }
 
     void Update()
@@ -40,6 +46,9 @@ public class Level2Boss : MonoBehaviour
         if (distanceToPlayer < 8f && !playerInRange) 
         {
             playerInRange = true;
+
+            door1.SetActive(true);
+            door2.SetActive(true);
         }
         if(playerInRange)
         {
@@ -191,5 +200,8 @@ public class Level2Boss : MonoBehaviour
         {
             Destroy(healthBarUI);
         }
+
+        door1.SetActive(false);
+        door2.SetActive(false);
     }
 }
