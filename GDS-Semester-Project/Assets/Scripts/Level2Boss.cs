@@ -13,6 +13,15 @@ public class Level2Boss : MonoBehaviour
     public float skillCooldown = 5f;
     public float bulletSpeed = 5f;
 
+    public GameObject bossRapidBulletPrefab;
+    public float homingBulletSpeed = 5f;
+    public float rapidBulletDuration = 2f;
+    public int rapidBulletsPerSecond = 10;
+
+    public float rotatingCrossDuration = 2f;
+    public int bulletPerDirection = 10;
+    public float rotationSpeed = 45f;
+
     private Player player;
     private float skillTimer;
     private bool playerInRange = false;
@@ -28,7 +37,7 @@ public class Level2Boss : MonoBehaviour
     void Update()
     {
         float distanceToPlayer = Vector3.Distance(transform.position, player.transform.position);
-        if (distanceToPlayer < 10f && !playerInRange) 
+        if (distanceToPlayer < 8f && !playerInRange) 
         {
             playerInRange = true;
         }
@@ -38,7 +47,7 @@ public class Level2Boss : MonoBehaviour
             skillTimer -= Time.deltaTime;
             if(skillTimer <= 0)
             {
-                SpawnBullets();
+                SelectSkill();
                 skillTimer = skillCooldown;
             }
         }
@@ -52,9 +61,9 @@ public class Level2Boss : MonoBehaviour
 
     private void SpawnBullets()
     {
-        int numberOfFans = 5;
+        int numberOfFans = 2;
         int numberOfBulletsPerFan = 10;
-        float angleBetweenBullets = 10f;
+        float angleBetweenBullets = 20f;
 
         float randomAngleOffset = Random.Range(-45f, 45f);
 
@@ -70,6 +79,79 @@ public class Level2Boss : MonoBehaviour
                 GameObject bullet = Instantiate(bossBulletPrefab, transform.position, Quaternion.identity);
                 bullet.GetComponent<Rigidbody2D>().velocity = direction * bulletSpeed;
             }
+        }
+    }
+
+    private void StartSpawingRapidBullets()
+    {
+        InvokeRepeating("SpawnRapidBullet", 0f, 1f / rapidBulletsPerSecond);
+        Invoke("StopSpawningRapidBullets", rapidBulletDuration);
+    }
+
+    private void SpawnRapidBullet()
+    {
+        GameObject rapidBullet = Instantiate(bossRapidBulletPrefab, transform.position, Quaternion.identity);
+        rapidBullet.GetComponent<Rigidbody2D>().velocity = (player.transform.position - transform.position).normalized * homingBulletSpeed;
+    }
+
+    private void StopSpawingRapidBullets()
+    {
+        CancelInvoke("SpawnRapidBullet");
+    }
+
+    private void SpawnRotatingCrossBullets()
+    {
+        StartCoroutine(RotatingCrossBulletCoroutine());
+    }
+
+    private IEnumerator RotatingCrossBulletCoroutine()
+    {
+        float elapsedTime = 0f;
+        int currentBulletOffset = 0;
+        float timeBetweenBullets = rotatingCrossDuration / bulletPerDirection;
+        float nextBulletTime = 0f;
+
+        while(elapsedTime < rotatingCrossDuration)
+        {
+            if(elapsedTime >= nextBulletTime)
+            {
+                for(int i = 0; i < bulletPerDirection; i++)
+                {
+                    float angle = (i + currentBulletOffset) * 360f / bulletPerDirection;
+                    Vector3 direction = Quaternion.Euler(0, 0, angle) * Vector3.right;
+
+                    GameObject bullet = Instantiate(bossBulletPrefab, transform.position, Quaternion.identity);
+                    bullet.GetComponent<Rigidbody2D>().velocity = direction * bulletSpeed;
+
+                    bullet.AddComponent<OffsetBullet>();
+                }
+
+                nextBulletTime += timeBetweenBullets;
+
+                currentBulletOffset = (currentBulletOffset + 1) % bulletPerDirection;
+            }
+
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+    }
+
+    
+
+    private void SelectSkill()
+    {
+        int skillIndex = Random.Range(0, 3);
+        switch(skillIndex)
+        {
+            case 0:
+            SpawnBullets();
+            break;
+            case 1:
+            StartSpawingRapidBullets();
+            break;
+            case 2:
+            SpawnRotatingCrossBullets();
+            break;
         }
     }
 
