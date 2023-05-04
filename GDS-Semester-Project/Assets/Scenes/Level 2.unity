@@ -10059,7 +10059,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 818599264}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 31.36, y: -3.06, z: 0.2884358}
+  m_LocalPosition: {x: -12.96, y: -7.83, z: 0.2884358}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -43099,7 +43099,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3464d699ec2669c4eae83501984745b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeLeft: 120
+  timeLeft: 60
   timerCanvas: {fileID: 637094751}
   addTimeText: {fileID: 1131135440}
 --- !u!114 &1571192370
@@ -43252,7 +43252,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1db8456b4b3cf3a44b80a887327dc09b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 1000
+  health: 10000
   healthBarUI: {fileID: 838012190}
   healthSlider: {fileID: 1519454953}
   bossBulletPrefab: {fileID: 1138211247793099325, guid: 798e7ee39c22dc64c80a837b7212b14b, type: 3}
