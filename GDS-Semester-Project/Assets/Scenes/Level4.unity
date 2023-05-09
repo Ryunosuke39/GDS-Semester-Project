@@ -9431,8 +9431,8 @@ MonoBehaviour:
   - {fileID: 1694225782}
   - {fileID: 2078118240}
   - {fileID: 507548816}
-  spawnInterval: 4
-  totalEnemies: 50
+  spawnInterval: 5
+  totalEnemies: 80
 --- !u!4 &865815306
 Transform:
   m_ObjectHideFlags: 0
