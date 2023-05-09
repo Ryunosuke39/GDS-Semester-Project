@@ -25484,7 +25484,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3464d699ec2669c4eae83501984745b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeLeft: 120
+  timeLeft: 90
   timerCanvas: {fileID: 743290273}
   addTimeText: {fileID: 1691974734}
 --- !u!114 &1994415810
