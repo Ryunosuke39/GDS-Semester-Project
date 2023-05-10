@@ -46,7 +46,7 @@ public class Level4Boss : MonoBehaviour
     void Update()
     {
         float distanceToPlayer = Vector3.Distance(transform.position, player.transform.position);
-        if (distanceToPlayer < 16f && !playerInRange) 
+        if (distanceToPlayer < 10f && !playerInRange) 
         {
             playerInRange = true;
 
@@ -205,7 +205,7 @@ public class Level4Boss : MonoBehaviour
 
     private void Die()
     {
-        Destroy(gameObject);
+        //Destroy(gameObject);
 
         if(healthBarUI != null)
         {
