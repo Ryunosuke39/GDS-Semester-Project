@@ -1476,7 +1476,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6003391756181416492, guid: f2bc55b584e7c3a46b345aca50dbecee, type: 3}
       propertyPath: moveSpeed
-      value: 6
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
@@ -1730,6 +1730,7 @@ GameObject:
   - component: {fileID: 543123696}
   - component: {fileID: 543123695}
   - component: {fileID: 543123694}
+  - component: {fileID: 543123699}
   m_Layer: 0
   m_Name: Level4Boss
   m_TagString: Boss
@@ -1861,7 +1862,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 543123693}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1db8456b4b3cf3a44b80a887327dc09b, type: 3}
   m_Name: 
@@ -1889,13 +1890,40 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 543123693}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 31.89, y: -7.67, z: 2.9964848}
+  m_LocalPosition: {x: 31.89, y: -5.83, z: 2.9964848}
   m_LocalScale: {x: 6, y: 6, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &543123699
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 543123693}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a8d409e1b0e677841b8d97d36ce0c1fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 8000
+  healthBarUI: {fileID: 1391770116}
+  healthSlider: {fileID: 876497173}
+  bossBulletPrefab: {fileID: 7218364836991395904, guid: 0998689ff948b3544b8dc844ccc1fde0, type: 3}
+  skillCooldown: 1.5
+  bulletSpeed: 5
+  bossRapidBulletPrefab: {fileID: 9020807165172991127, guid: 070fcda1a59d1f1429f2fe99b6738e68, type: 3}
+  homingBulletSpeed: 4
+  rapidBulletDuration: 2
+  rapidBulletsPerSecond: 10
+  rotatingCrossDuration: 2
+  bulletPerDirection: 10
+  rotationSpeed: 45
+  door1: {fileID: 2102733620}
+  door2: {fileID: 1279169421}
 --- !u!1001 &552213410
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10675,7 +10703,7 @@ MonoBehaviour:
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0.5
-  m_PointLightOuterRadius: 300
+  m_PointLightOuterRadius: 3
   m_ShapeLightParametricSides: 5
   m_ShapeLightParametricAngleOffset: 0
   m_ShapeLightParametricRadius: 1

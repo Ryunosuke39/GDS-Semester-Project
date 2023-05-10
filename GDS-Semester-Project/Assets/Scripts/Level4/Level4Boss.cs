@@ -43,7 +43,7 @@ public class Level4Boss : MonoBehaviour
     void Update()
     {
         float distanceToPlayer = Vector3.Distance(transform.position, player.transform.position);
-        if (distanceToPlayer < 8f && !playerInRange) 
+        if (distanceToPlayer < 16f && !playerInRange) 
         {
             playerInRange = true;
 
