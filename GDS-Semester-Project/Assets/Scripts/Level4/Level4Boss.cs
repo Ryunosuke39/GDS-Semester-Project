@@ -188,6 +188,12 @@ public class Level4Boss : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collision)
     {
+        // 检查攻击是否来自Boss自己
+      if(collision.gameObject == gameObject)
+      {
+        // 如果是，那么直接返回，不处理这个攻击
+          return;
+      }
         if(collision.CompareTag("Bullet"))
         {
             Bullet bullet = collision.GetComponent<Bullet>();

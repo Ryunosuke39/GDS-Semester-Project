@@ -13,13 +13,13 @@ GameObject:
   - component: {fileID: 4465358322152261487}
   - component: {fileID: 7981621321778444535}
   - component: {fileID: -2265078676036223156}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: 1
   m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &8304375976550634552
 Transform:
   m_ObjectHideFlags: 0
@@ -129,7 +129,7 @@ CapsuleCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 128
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
