@@ -105,6 +105,15 @@ public class Player : MonoBehaviour
         if (collision.gameObject.CompareTag("Bullet")) {
             Destroy(collision.gameObject);
         }
+
+        if(collision.gameObject.CompareTag("Boss"))
+        {
+            Level2Boss boss = collision.gameObject.GetComponent<Level2Boss>();
+            if(boss != null)
+            {
+                boss.TakeDamage(bulletDamage);
+            }
+        }
     }
 
     //gun change 
