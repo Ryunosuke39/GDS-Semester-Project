@@ -28,6 +28,9 @@ public class Level4Boss : MonoBehaviour
     private Player player;
     private float skillTimer;
     private bool playerInRange = false;
+
+    public float speed = 2.0f;
+
     
 
     void Start()
@@ -52,17 +55,25 @@ public class Level4Boss : MonoBehaviour
         }
         if(playerInRange)
         {
-            healthBarUI.SetActive(true);
+            
+                 if(healthBarUI != null)
+                 {healthBarUI.SetActive(true);}
+                 
             skillTimer -= Time.deltaTime;
             if(skillTimer <= 0)
             {
                 SelectSkill();
                 skillTimer = skillCooldown;
             }
+
+            Vector3 playerPosition = player.transform.position;
+            Vector3 direction = (playerPosition - transform.position).normalized;  //计算出向玩家移动的方向
+            transform.position = Vector3.MoveTowards(transform.position, playerPosition, speed * Time.deltaTime);  //使Boss向玩家移动
         }
         else
         {
-            healthBarUI.SetActive(false);
+            if(healthBarUI != null)
+            {healthBarUI.SetActive(false);}
         }
 
         healthSlider.value = health / maxHealth;
@@ -198,7 +209,8 @@ public class Level4Boss : MonoBehaviour
 
         if(healthBarUI != null)
         {
-            Destroy(healthBarUI);
+            //Destroy(healthBarUI);
+            healthBarUI.SetActive(false);
         }
 
         door1.SetActive(false);
