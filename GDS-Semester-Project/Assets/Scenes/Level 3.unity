@@ -1897,6 +1897,15 @@ MonoBehaviour:
   bossBulletPrefab: {fileID: 1138211247793099325, guid: 798e7ee39c22dc64c80a837b7212b14b, type: 3}
   skillCooldown: 1.5
   bulletSpeed: 5
+  bossRapidBulletPrefab: {fileID: 0}
+  homingBulletSpeed: 5
+  rapidBulletDuration: 2
+  rapidBulletsPerSecond: 10
+  rotatingCrossDuration: 2
+  bulletPerDirection: 10
+  rotationSpeed: 45
+  door1: {fileID: 922666675}
+  door2: {fileID: 439182161}
 --- !u!4 &621006808
 Transform:
   m_ObjectHideFlags: 0
