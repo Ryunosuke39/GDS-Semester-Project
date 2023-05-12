@@ -43252,7 +43252,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1db8456b4b3cf3a44b80a887327dc09b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 10000
+  health: 7000
   healthBarUI: {fileID: 838012190}
   healthSlider: {fileID: 1519454953}
   bossBulletPrefab: {fileID: 1138211247793099325, guid: 798e7ee39c22dc64c80a837b7212b14b, type: 3}
