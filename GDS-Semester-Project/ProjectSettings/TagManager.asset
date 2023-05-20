@@ -15,6 +15,7 @@ TagManager:
   - Handgun
   - Wall
   - Boss
+  - Door
   layers:
   - Default
   - TransparentFX

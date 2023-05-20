@@ -1891,12 +1891,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1db8456b4b3cf3a44b80a887327dc09b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 3500
+  health: 7000
   healthBarUI: {fileID: 883788673}
   healthSlider: {fileID: 1781656884}
   bossBulletPrefab: {fileID: 1138211247793099325, guid: 798e7ee39c22dc64c80a837b7212b14b, type: 3}
   skillCooldown: 1.5
   bulletSpeed: 5
+  bossRapidBulletPrefab: {fileID: 7218364836991395904, guid: 9af6493cbdd4d234a9428fe3cc0eeda1, type: 3}
+  homingBulletSpeed: 5
+  rapidBulletDuration: 2
+  rapidBulletsPerSecond: 10
+  rotatingCrossDuration: 2
+  bulletPerDirection: 10
+  rotationSpeed: 45
+  door1: {fileID: 922666675}
+  door2: {fileID: 439182161}
 --- !u!4 &621006808
 Transform:
   m_ObjectHideFlags: 0
@@ -1905,7 +1914,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 621006804}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 73.82, y: -12.71, z: 2.9964848}
+  m_LocalPosition: {x: 73.83, y: -11, z: 2.9964848}
   m_LocalScale: {x: 4, y: 4, z: 4}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1992,11 +2001,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 598731256158122540, guid: 53e2bb07ef3c7f14bb2f478280ae2f7f, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.74
+      value: -1.18
       objectReference: {fileID: 0}
     - target: {fileID: 598731256158122540, guid: 53e2bb07ef3c7f14bb2f478280ae2f7f, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -3.73
+      value: -2.73
       objectReference: {fileID: 0}
     - target: {fileID: 598731256158122540, guid: 53e2bb07ef3c7f14bb2f478280ae2f7f, type: 3}
       propertyPath: m_LocalPosition.z

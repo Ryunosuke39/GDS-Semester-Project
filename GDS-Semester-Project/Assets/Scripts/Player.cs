@@ -114,6 +114,13 @@ public class Player : MonoBehaviour
                 boss.TakeDamage(bulletDamage);
             }
         }
+        //Thomas for tut
+        
+        if (collision.gameObject.CompareTag("Door"))
+        {
+            Destroy(collision.gameObject);
+        }
+        
     }
 
     //gun change 
@@ -299,6 +306,6 @@ public delegate void HealthChangedDelegate(float health);
 public event HealthChangedDelegate OnHealthChanged;
 
 
-    
+
 
 }
