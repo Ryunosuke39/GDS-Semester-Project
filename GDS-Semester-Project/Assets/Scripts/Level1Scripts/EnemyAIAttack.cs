@@ -10,7 +10,7 @@ public class EnemyAIAttack : MonoBehaviour
     public float attackDamage = 34f;
     public float attackDelay = 1f;
 
-    //private Transform player;
+    private Transform player;
     private bool isAlive = true;
     private bool isAttacking = false;
     private Vector2 direction;
@@ -20,7 +20,7 @@ public class EnemyAIAttack : MonoBehaviour
 
     private void Start()
     {
-        //player = GameObject.FindGameObjectWithTag("Player").transform;
+        player = GameObject.FindGameObjectWithTag("Player").transform;
         currentHp = maxHp;
         gameManager = GameObject.FindObjectOfType<GameManager>();
         rb = GetComponent<Rigidbody2D>();
