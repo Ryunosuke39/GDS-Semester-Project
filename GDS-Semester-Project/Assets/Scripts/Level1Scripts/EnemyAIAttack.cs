@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Animations;
 using UnityEngine;
 
 public class EnemyAIAttack : MonoBehaviour
@@ -10,20 +11,22 @@ public class EnemyAIAttack : MonoBehaviour
     public float attackDamage = 34f;
     public float attackDelay = 1f;
 
-    private Transform player;
+    private Player player;
     private bool isAlive = true;
     private bool isAttacking = false;
     private Vector2 direction;
     private Rigidbody2D rb;
 
     private GameManager gameManager;
+    Transform[] children;
 
     private void Start()
     {
-        player = GameObject.FindGameObjectWithTag("Player").transform;
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent <Player> (); ;//.transform;
         currentHp = maxHp;
         gameManager = GameObject.FindObjectOfType<GameManager>();
         rb = GetComponent<Rigidbody2D>();
+        children = transform.GetComponentsInChildren<Transform>();
     }
 
     private void Update()
@@ -79,6 +82,7 @@ public class EnemyAIAttack : MonoBehaviour
 
             }
         }
+
     }
 
     public void TakeDamage(float damage)
@@ -108,12 +112,28 @@ public class EnemyAIAttack : MonoBehaviour
         transform.position -= transform.right * 0.2f;
 
         // Change color to indicate damage taken
-        GetComponent<SpriteRenderer>().color = Color.red;
+        foreach (var child in children)
+        {
+            if (child.name == "BrainGFX")
+            {
+                Debug.Log("GFX entered");
+                GetComponent<SpriteRenderer>().color = Color.red;
+            }
+        }
+        FindObjectOfType<AudioManager>().Play("EnemyAttack");//audio manager
+        yield return new WaitForSeconds(attackDelay);
 
-        yield return new WaitForSeconds(0.1f);
+        //// Change color back to normal
+        foreach (var child in children)
+        {
+            if (child.name == "BrainGFX")
+            {
+                GetComponent<SpriteRenderer>().color = Color.white;
+            }
+        }
+        player.TakeDamage(attackDamage);
+        Destroy(gameObject);
 
-        // Change color back to normal
-        GetComponent<SpriteRenderer>().color = Color.white;
     }
 
     private IEnumerator AttackPlayer(Player player)
@@ -124,4 +144,6 @@ public class EnemyAIAttack : MonoBehaviour
         player.TakeDamage(attackDamage);
         Destroy(gameObject);
     }
+
+
 }

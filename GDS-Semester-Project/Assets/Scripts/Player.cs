@@ -114,8 +114,17 @@ public class Player : MonoBehaviour
                 boss.TakeDamage(bulletDamage);
             }
         }
+        //added for ditecting enemy tae damage 
+        if (collision.gameObject.CompareTag("Enemy"))
+        {
+            EnemyAIAttack enemy = collision.gameObject.GetComponent<EnemyAIAttack>();
+            if (enemy != null)
+            {
+                enemy.TakeDamage(bulletDamage);
+            }
+        }
         //Thomas for tut
-        
+
         if (collision.gameObject.CompareTag("Door"))
         {
             Destroy(collision.gameObject);
