@@ -5,6 +5,7 @@ using Pathfinding;
 using Unity.VisualScripting.Antlr3.Runtime;
 using System.IO;
 using UnityEditor.Animations;
+using Unity.VisualScripting;
 
 public class EnemyAI : MonoBehaviour
 {
@@ -27,22 +28,37 @@ public class EnemyAI : MonoBehaviour
     //public GameObject FindRange;
     //EnemyAIPlayerInRange enemyAIPlayerInRange;
 
+    EnemyAIAttack enemyAIAttack;
+
     void Start()
     {
         //enemyAIPlayerInRange = FindRange.GetComponent<EnemyAIPlayerInRange>();
         seeker = GetComponent<Seeker>();
         rb = GetComponent<Rigidbody2D>();
+        enemyAIAttack = GetComponent<EnemyAIAttack>();
 
         InvokeRepeating("UpdatePath", 0f, 0.5f);
     }
 
     void UpdatePath()
     {
-        if(seeker.IsDone())
-        seeker.StartPath(rb.position, target.position, OnPathComplete);
+
+         if (seeker.IsDone())
+              seeker.StartPath(rb.position, target.position, OnPathComplete);
+
+         //transform.position -= transform.right * 0.2f;
+        
     }
 
-    void OnPathComplete(Pathfinding.Path p)
+    //copied knockback function 
+    private IEnumerator Knockback()
+    {
+        // Push enemy back a little bit
+        transform.position -= transform.right * 0.2f;
+        yield return new WaitForSeconds(0.1f);
+    }
+
+     void OnPathComplete(Pathfinding.Path p)
     {
         if(!p.error)
         {
@@ -70,15 +86,22 @@ public class EnemyAI : MonoBehaviour
         Vector2 direction = ((Vector2)path.vectorPath[currentWaypoint] - rb.position).normalized;
         Vector2 force = direction * speed * Time.deltaTime;
 
- 
+        //if (enemyAIAttack.isKnockbecked)
+        //{
+            //transform.position -= transform.right * 0.2f;
+            //enemyAIAttack.isKnockbecked = false;
+        //}
+        //if(enemyAIAttack.isKnockbecked == false)
+        //{ 
             rb.AddForce(force);
-
             float distance = Vector2.Distance(rb.position, path.vectorPath[currentWaypoint]);
 
             if (distance < nextWaypointDistance)
             {
                 currentWaypoint++;
             }
+        //}
+         
 
         //updtae GFX of enemy
         if (force.x >= 0.01f)

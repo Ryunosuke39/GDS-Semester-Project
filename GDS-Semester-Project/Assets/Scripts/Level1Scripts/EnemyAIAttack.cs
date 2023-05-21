@@ -22,49 +22,14 @@ public class EnemyAIAttack : MonoBehaviour
     //assign BrainGFXX for changing the color 
     public Transform brainGFX;
 
+    public bool isKnockbecked = false;
+
     private void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").transform; ;//.transform;
         currentHp = maxHp;
         gameManager = GameObject.FindObjectOfType<GameManager>();
         rb = GetComponent<Rigidbody2D>();
-    }
-
-    private void Update()
-    {
-        /*
-        if (isAlive && player != null)
-        {
-            direction = (player.position - transform.position).normalized;
-            //transform.Translate(direction * speed * Time.deltaTime);
-
-            //transform.position += new Vector3(direction.x, direction.y, 0) * speed * Time.deltaTime;
-
-            if (direction.x > 0)
-            {
-                transform.rotation = Quaternion.Euler(0, 0, 0);
-            }
-            else if (direction.x < 0)
-            {
-                transform.rotation = Quaternion.Euler(0, 180, 0);
-            }
-        }
-        */
-
-
-    }
-
-    private void FixedUpdate()
-    {/*
-        if (isAlive && player != null)
-        {
-            rb.velocity = direction * speed;
-        }
-        else
-        {
-            rb.velocity = Vector2.zero;
-        }
-        */
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -102,6 +67,7 @@ public class EnemyAIAttack : MonoBehaviour
             else
             {
                 // Knockback effect
+                isKnockbecked = true;
                 StartCoroutine(Knockback());
             }
         }
@@ -110,7 +76,7 @@ public class EnemyAIAttack : MonoBehaviour
     private IEnumerator Knockback()
     {
         // Push enemy back a little bit
-        transform.position -= transform.right * 0.2f;
+        // transform.position -= transform.right * 0.2f;
 
         // Change color to indicate damage taken
 
