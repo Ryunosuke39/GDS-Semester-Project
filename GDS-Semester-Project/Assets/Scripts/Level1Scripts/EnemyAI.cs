@@ -23,12 +23,14 @@ public class EnemyAI : MonoBehaviour
     Seeker seeker;
     Rigidbody2D rb;
 
-    //enemy find player 
-    //EnemyAIPlayerInRange enemyAIPlayerInRange;
-    //public GameObject FindRange;
-    //EnemyAIPlayerInRange enemyAIPlayerInRange;
-
     EnemyAIAttack enemyAIAttack;
+
+    //enemy find player in range 
+    public bool AwareOfPlayer { get; private set; }
+    public Vector2 DirectionToPlayer { get; private set; }
+    [SerializeField]
+    private float playerAwarenessDistance;
+
 
     void Start()
     {
@@ -67,32 +69,49 @@ public class EnemyAI : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
-    void FixedUpdate()
+    private void Update()
     {
-        if (path == null)
-            return;
+        Vector2 enemyToPlayerVector = target.position - transform.position;
+        DirectionToPlayer = enemyToPlayerVector.normalized;
 
-        if(currentWaypoint >= path.vectorPath.Count)
+        if(enemyToPlayerVector.magnitude <= playerAwarenessDistance)
         {
-            reachedEndOfPath = true;
-            return;
+            AwareOfPlayer = true;
         }
         else
         {
-            reachedEndOfPath = false;
+            AwareOfPlayer = false;
         }
+    }
 
-        Vector2 direction = ((Vector2)path.vectorPath[currentWaypoint] - rb.position).normalized;
-        Vector2 force = direction * speed * Time.deltaTime;
+    // Update is called once per frame
+    void FixedUpdate()
+    {
+        if (AwareOfPlayer)
+        {
+            if (path == null)
+                return;
 
-        //if (enemyAIAttack.isKnockbecked)
-        //{
+            if (currentWaypoint >= path.vectorPath.Count)
+            {
+                reachedEndOfPath = true;
+                return;
+            }
+            else
+            {
+                reachedEndOfPath = false;
+            }
+
+            Vector2 direction = ((Vector2)path.vectorPath[currentWaypoint] - rb.position).normalized;
+            Vector2 force = direction * speed * Time.deltaTime;
+
+            //if (enemyAIAttack.isKnockbecked)
+            //{
             //transform.position -= transform.right * 0.2f;
             //enemyAIAttack.isKnockbecked = false;
-        //}
-        //if(enemyAIAttack.isKnockbecked == false)
-        //{ 
+            //}
+            //if(enemyAIAttack.isKnockbecked == false)
+            //{ 
             rb.AddForce(force);
             float distance = Vector2.Distance(rb.position, path.vectorPath[currentWaypoint]);
 
@@ -100,17 +119,18 @@ public class EnemyAI : MonoBehaviour
             {
                 currentWaypoint++;
             }
-        //}
-         
+            //}
 
-        //updtae GFX of enemy
-        if (force.x >= 0.01f)
-        {
-            enemyGFX.localScale = new Vector3(1f, 1f, 1f);
-        }
-        else if (force.x <= -0.01f)
-        {
-            enemyGFX.localScale = new Vector3(-1f, 1f, 1f);
+
+            //updtae GFX of enemy
+            if (force.x >= 0.01f)
+            {
+                enemyGFX.localScale = new Vector3(1f, 1f, 1f);
+            }
+            else if (force.x <= -0.01f)
+            {
+                enemyGFX.localScale = new Vector3(-1f, 1f, 1f);
+            }
         }
     }
 

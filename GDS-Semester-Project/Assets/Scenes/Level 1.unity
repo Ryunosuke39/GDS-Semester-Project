@@ -36232,6 +36232,7 @@ MonoBehaviour:
   speed: 400
   nextWaypointDistance: 3
   enemyGFX: {fileID: 988868152}
+  playerAwarenessDistance: 10
 --- !u!58 &1743078723
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -36328,6 +36329,7 @@ MonoBehaviour:
   attackDamage: 34
   attackDelay: 1
   brainGFX: {fileID: 988868152}
+  isKnockbecked: 0
 --- !u!4 &1769688537 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3504676802960416647, guid: 43f07793745d5ee4c80ca9b7d6e097d5, type: 3}
