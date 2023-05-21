@@ -11,22 +11,23 @@ public class EnemyAIAttack : MonoBehaviour
     public float attackDamage = 34f;
     public float attackDelay = 1f;
 
-    private Player player;
+    private Transform player;
     private bool isAlive = true;
     private bool isAttacking = false;
     private Vector2 direction;
     private Rigidbody2D rb;
 
     private GameManager gameManager;
-    Transform[] children;
+
+    //assign BrainGFXX for changing the color 
+    public Transform brainGFX;
 
     private void Start()
     {
-        player = GameObject.FindGameObjectWithTag("Player").GetComponent <Player> (); ;//.transform;
+        player = GameObject.FindGameObjectWithTag("Player").transform; ;//.transform;
         currentHp = maxHp;
         gameManager = GameObject.FindObjectOfType<GameManager>();
         rb = GetComponent<Rigidbody2D>();
-        children = transform.GetComponentsInChildren<Transform>();
     }
 
     private void Update()
@@ -112,28 +113,16 @@ public class EnemyAIAttack : MonoBehaviour
         transform.position -= transform.right * 0.2f;
 
         // Change color to indicate damage taken
-        foreach (var child in children)
-        {
-            if (child.name == "BrainGFX")
-            {
-                Debug.Log("GFX entered");
-                GetComponent<SpriteRenderer>().color = Color.red;
-            }
-        }
+
+        brainGFX.GetComponent<SpriteRenderer>().color = Color.red;
         FindObjectOfType<AudioManager>().Play("EnemyAttack");//audio manager
+
+        //FindObjectOfType<AudioManager>().Play("EnemyAttack");//audio manager
         yield return new WaitForSeconds(attackDelay);
 
-        //// Change color back to normal
-        foreach (var child in children)
-        {
-            if (child.name == "BrainGFX")
-            {
-                GetComponent<SpriteRenderer>().color = Color.white;
-            }
-        }
-        player.TakeDamage(attackDamage);
-        Destroy(gameObject);
-
+        // Change color back to normal
+        brainGFX.GetComponent<SpriteRenderer>().color = Color.white;
+        
     }
 
     private IEnumerator AttackPlayer(Player player)

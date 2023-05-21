@@ -36266,7 +36266,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.2
+  m_Radius: 0.1
 --- !u!114 &1743078724
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -36327,6 +36327,7 @@ MonoBehaviour:
   currentHp: 0
   attackDamage: 34
   attackDelay: 1
+  brainGFX: {fileID: 988868152}
 --- !u!4 &1769688537 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3504676802960416647, guid: 43f07793745d5ee4c80ca9b7d6e097d5, type: 3}

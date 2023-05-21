@@ -115,6 +115,7 @@ public class Player : MonoBehaviour
             }
         }
         //added for ditecting enemy tae damage 
+        /*
         if (collision.gameObject.CompareTag("Enemy"))
         {
             EnemyAIAttack enemy = collision.gameObject.GetComponent<EnemyAIAttack>();
@@ -123,6 +124,7 @@ public class Player : MonoBehaviour
                 enemy.TakeDamage(bulletDamage);
             }
         }
+        */
         //Thomas for tut
 
         if (collision.gameObject.CompareTag("Door"))
