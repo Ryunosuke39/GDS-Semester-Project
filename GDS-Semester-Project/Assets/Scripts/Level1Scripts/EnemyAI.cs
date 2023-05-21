@@ -24,12 +24,12 @@ public class EnemyAI : MonoBehaviour
 
     //enemy find player 
     //EnemyAIPlayerInRange enemyAIPlayerInRange;
-    public GameObject FindRange;
-    EnemyAIPlayerInRange enemyAIPlayerInRange;
+    //public GameObject FindRange;
+    //EnemyAIPlayerInRange enemyAIPlayerInRange;
 
     void Start()
     {
-        enemyAIPlayerInRange = FindRange.GetComponent<EnemyAIPlayerInRange>();
+        //enemyAIPlayerInRange = FindRange.GetComponent<EnemyAIPlayerInRange>();
         seeker = GetComponent<Seeker>();
         rb = GetComponent<Rigidbody2D>();
 
@@ -70,8 +70,7 @@ public class EnemyAI : MonoBehaviour
         Vector2 direction = ((Vector2)path.vectorPath[currentWaypoint] - rb.position).normalized;
         Vector2 force = direction * speed * Time.deltaTime;
 
-        if (enemyAIPlayerInRange.doesFind)
-        {
+ 
             rb.AddForce(force);
 
             float distance = Vector2.Distance(rb.position, path.vectorPath[currentWaypoint]);
@@ -80,7 +79,6 @@ public class EnemyAI : MonoBehaviour
             {
                 currentWaypoint++;
             }
-        }
 
         //updtae GFX of enemy
         if (force.x >= 0.01f)
