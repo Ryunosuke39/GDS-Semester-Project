@@ -4,6 +4,7 @@ using UnityEngine;
 using Pathfinding;
 using Unity.VisualScripting.Antlr3.Runtime;
 using System.IO;
+using UnityEditor.Animations;
 
 public class EnemyAI : MonoBehaviour
 {
@@ -21,8 +22,14 @@ public class EnemyAI : MonoBehaviour
     Seeker seeker;
     Rigidbody2D rb;
 
+    //enemy find player 
+    //EnemyAIPlayerInRange enemyAIPlayerInRange;
+    public GameObject FindRange;
+    EnemyAIPlayerInRange enemyAIPlayerInRange;
+
     void Start()
     {
+        enemyAIPlayerInRange = FindRange.GetComponent<EnemyAIPlayerInRange>();
         seeker = GetComponent<Seeker>();
         rb = GetComponent<Rigidbody2D>();
 
@@ -63,13 +70,16 @@ public class EnemyAI : MonoBehaviour
         Vector2 direction = ((Vector2)path.vectorPath[currentWaypoint] - rb.position).normalized;
         Vector2 force = direction * speed * Time.deltaTime;
 
-        rb.AddForce(force);
-
-        float distance = Vector2.Distance(rb.position, path.vectorPath[currentWaypoint]);
-
-        if(distance < nextWaypointDistance) 
+        if (enemyAIPlayerInRange.doesFind)
         {
-            currentWaypoint++;
+            rb.AddForce(force);
+
+            float distance = Vector2.Distance(rb.position, path.vectorPath[currentWaypoint]);
+
+            if (distance < nextWaypointDistance)
+            {
+                currentWaypoint++;
+            }
         }
 
         //updtae GFX of enemy
@@ -82,4 +92,5 @@ public class EnemyAI : MonoBehaviour
             enemyGFX.localScale = new Vector3(-1f, 1f, 1f);
         }
     }
+
 }
