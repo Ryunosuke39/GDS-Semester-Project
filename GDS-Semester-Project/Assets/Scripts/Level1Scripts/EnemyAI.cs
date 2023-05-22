@@ -30,7 +30,7 @@ public class EnemyAI : MonoBehaviour
     public Vector2 DirectionToPlayer { get; private set; }
     [SerializeField]
     private float playerAwarenessDistance;
-
+    //public Transform targetPlayer;
 
     void Start()
     {
@@ -38,6 +38,7 @@ public class EnemyAI : MonoBehaviour
         seeker = GetComponent<Seeker>();
         rb = GetComponent<Rigidbody2D>();
         enemyAIAttack = GetComponent<EnemyAIAttack>();
+        target = GameObject.Find("Player").transform;
 
         InvokeRepeating("UpdatePath", 0f, 0.5f);
     }

@@ -24,12 +24,16 @@ public class EnemyAIAttack : MonoBehaviour
 
     public bool isKnockbecked = false;
 
+    //Animator
+    Animator animator;
+
     private void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").transform; ;//.transform;
         currentHp = maxHp;
         gameManager = GameObject.FindObjectOfType<GameManager>();
         rb = GetComponent<Rigidbody2D>();
+        animator = brainGFX.GetComponent<Animator>();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -61,8 +65,10 @@ public class EnemyAIAttack : MonoBehaviour
             {
                 isAlive = false;
                 FindObjectOfType<AudioManager>().Play("EnemyDeath");//audio manager
+                animator.SetBool("isDead", true);
                 Timer.Instance.AddTime(5);
-                Destroy(gameObject);
+                Destroy(gameObject, 0.5f);
+                
             }
             else
             {
@@ -82,7 +88,7 @@ public class EnemyAIAttack : MonoBehaviour
 
         brainGFX.GetComponent<SpriteRenderer>().color = Color.red;
         FindObjectOfType<AudioManager>().Play("EnemyAttack");//audio manager
-
+        animator.SetBool("isAttacked", true);
         //FindObjectOfType<AudioManager>().Play("EnemyAttack");//audio manager
         yield return new WaitForSeconds(attackDelay);
 
@@ -95,6 +101,7 @@ public class EnemyAIAttack : MonoBehaviour
     {
         isAttacking = true;
         FindObjectOfType<AudioManager>().Play("EnemyAttack");//audio manager
+        animator.SetBool("isAttacking", true);
         yield return new WaitForSeconds(attackDelay);
         player.TakeDamage(attackDamage);
         Destroy(gameObject);
