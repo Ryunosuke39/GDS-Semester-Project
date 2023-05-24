@@ -11970,7 +11970,7 @@ MonoBehaviour:
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0.5
-  m_PointLightOuterRadius: 3
+  m_PointLightOuterRadius: 3.5
   m_ShapeLightParametricSides: 5
   m_ShapeLightParametricAngleOffset: 0
   m_ShapeLightParametricRadius: 1
@@ -26762,7 +26762,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5242310310074989973, guid: cd2c87edcaaca6e40a9fca8df0567011, type: 3}
       propertyPath: m_FalloffIntensity
-      value: 0.432
+      value: 0.58
       objectReference: {fileID: 0}
     - target: {fileID: 5242310310074989973, guid: cd2c87edcaaca6e40a9fca8df0567011, type: 3}
       propertyPath: m_PointLightInnerAngle
@@ -26770,15 +26770,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5242310310074989973, guid: cd2c87edcaaca6e40a9fca8df0567011, type: 3}
       propertyPath: m_PointLightOuterAngle
-      value: 50.731003
+      value: 58
       objectReference: {fileID: 0}
     - target: {fileID: 5242310310074989973, guid: cd2c87edcaaca6e40a9fca8df0567011, type: 3}
       propertyPath: m_PointLightInnerRadius
-      value: 2
+      value: 2.3
       objectReference: {fileID: 0}
     - target: {fileID: 5242310310074989973, guid: cd2c87edcaaca6e40a9fca8df0567011, type: 3}
       propertyPath: m_PointLightOuterRadius
-      value: 10
+      value: 11.3
       objectReference: {fileID: 0}
     - target: {fileID: 5242310310074989978, guid: cd2c87edcaaca6e40a9fca8df0567011, type: 3}
       propertyPath: m_RootOrder
