@@ -45,11 +45,17 @@ public class EnemyAI : MonoBehaviour
 
     void UpdatePath()
     {
-
-         if (seeker.IsDone())
-              seeker.StartPath(rb.position, target.position, OnPathComplete);
-
-         //transform.position -= transform.right * 0.2f;
+        //if (enemyAIAttack.isKnockbecked)
+        //{
+        //transform.position -= transform.right * 0.5f; //0.2f
+        //enemyAIAttack.isKnockbecked = false;
+        //}
+        //if (enemyAIAttack.isKnockbecked == false)
+        //{
+            if (seeker.IsDone())
+                seeker.StartPath(rb.position, target.position, OnPathComplete);
+        //}
+         
         
     }
 
@@ -106,21 +112,21 @@ public class EnemyAI : MonoBehaviour
             Vector2 direction = ((Vector2)path.vectorPath[currentWaypoint] - rb.position).normalized;
             Vector2 force = direction * speed * Time.deltaTime;
 
-            //if (enemyAIAttack.isKnockbecked)
-            //{
-            //transform.position -= transform.right * 0.2f;
-            //enemyAIAttack.isKnockbecked = false;
-            //}
-            //if(enemyAIAttack.isKnockbecked == false)
-            //{ 
-            rb.AddForce(force);
-            float distance = Vector2.Distance(rb.position, path.vectorPath[currentWaypoint]);
-
-            if (distance < nextWaypointDistance)
+            if (enemyAIAttack.isKnockbecked)
             {
-                currentWaypoint++;
+                rb.position -= rb.position * 0f;
+                enemyAIAttack.isKnockbecked = false;
             }
-            //}
+            if(enemyAIAttack.isKnockbecked == false)
+            { 
+                rb.AddForce(force);
+                float distance = Vector2.Distance(rb.position, path.vectorPath[currentWaypoint]);
+
+                if (distance < nextWaypointDistance)
+                {
+                    currentWaypoint++;
+                }
+            }
 
 
             //updtae GFX of enemy
