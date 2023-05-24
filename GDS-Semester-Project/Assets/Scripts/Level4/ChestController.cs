@@ -24,6 +24,8 @@ public class ChestController : MonoBehaviour
                 doorController.keyAcquired = true;
             }
             keyAcquiredPanel.SetActive(true);
+             // Pause the game
+            Time.timeScale = 0;
         }
     }
 
@@ -31,5 +33,7 @@ public class ChestController : MonoBehaviour
     {
         keyAcquiredPanel.SetActive(false);
         Destroy(gameObject, 0.1f);
+        // Resume the game
+        Time.timeScale = 1;
     }
 }

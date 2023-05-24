@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Billboarf : MonoBehaviour
+public class Billboard : MonoBehaviour
 {
     public GameObject keyPromptPanel;
     //public bool keyAcquired = false;
@@ -12,6 +12,8 @@ public class Billboarf : MonoBehaviour
         if (collision.CompareTag("Player"))
          {
                 keyPromptPanel.SetActive(true);
+                 // Pause the game
+            Time.timeScale = 0;
          }
     }
 
@@ -20,6 +22,8 @@ public class Billboarf : MonoBehaviour
         if (collision.CompareTag("Player"))
         {
             keyPromptPanel.SetActive(false);
+            // Resume the game
+        Time.timeScale = 1;
         }
     }
 }

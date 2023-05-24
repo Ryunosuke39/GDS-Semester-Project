@@ -1886,7 +1886,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: ': Look in the surrounding bushes.'
+  m_text: ': Check the surrounding bushes.'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -11009,6 +11009,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 884927375}
+  - component: {fileID: 884927376}
   m_Layer: 0
   m_Name: StartPoint
   m_TagString: Untagged
@@ -11031,6 +11032,19 @@ Transform:
   m_Father: {fileID: 542451437}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &884927376
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 884927374}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dba074b0394792c43a97bc9342fb89e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  StartPanel: {fileID: 1961097659}
 --- !u!1001 &894847608
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -26099,13 +26113,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: adff3909cc93fd9438de5a927f6ea21b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  panels:
-  - {fileID: 1961097659}
-  - {fileID: 800084705}
-  - {fileID: 1682214954}
-  - {fileID: 72158419}
-  - {fileID: 31526707}
-  - {fileID: 31526706}
 --- !u!1 &1564174484
 GameObject:
   m_ObjectHideFlags: 0
@@ -28507,7 +28514,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1961097660
 RectTransform:
   m_ObjectHideFlags: 0
@@ -29352,7 +29359,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d58195e5e388b8e4bb02b4c4fbaac115, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  keyPromptPanel: {fileID: 1682214954}
+  keyPromptPanel: {fileID: 1033364561}
   keyAcquired: 0
 --- !u!1 &2066905197
 GameObject:
