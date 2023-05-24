@@ -140,7 +140,7 @@ Transform:
   m_Children:
   - {fileID: 5277943680658259466}
   m_Father: {fileID: 0}
-  m_RootOrder: 27
+  m_RootOrder: 29
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &5277943680775207484
 MonoBehaviour:
@@ -202,9 +202,9 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: -0.03}
   serializedVersion: 2
-  m_Radius: 0.1
+  m_Radius: 0.12
 --- !u!114 &5277943680775207486
 MonoBehaviour:
   m_ObjectHideFlags: 0

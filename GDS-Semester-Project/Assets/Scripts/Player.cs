@@ -242,7 +242,6 @@ public class Player : MonoBehaviour
 
         if (Health <= 0)
         {
-            animator.SetBool("Dead", true);
             Health = 0;
             isPlayerDead = true;
             if (isPlayerDead && !isPlayerDeathPlayed)
@@ -251,8 +250,9 @@ public class Player : MonoBehaviour
                 //animator.SetBool("Dead", true);  //player player dead animation 
                 isPlayerDeathPlayed =true;
             }
-            //Destroy(gameObject); produce error from camera follow scritp 
-             Die();//Jacky for lose panel
+            //Destroy(gameObject); produce error from camera follow scritp
+            animator.SetBool("Dead", true);
+            Die();//Jacky for lose panel
         }
          OnHealthChanged?.Invoke(Health);//Jacky 
     }
@@ -261,6 +261,7 @@ public class Player : MonoBehaviour
     private void Die()
     {
         GameManager.Instance.PlayerLost();
+        FindObjectOfType<AudioManager>().Play("Lose");
     }
 
       //Various items function realization code from Jacky

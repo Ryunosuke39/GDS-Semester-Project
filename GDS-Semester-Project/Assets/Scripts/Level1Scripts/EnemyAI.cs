@@ -22,6 +22,7 @@ public class EnemyAI : MonoBehaviour
 
     Seeker seeker;
     Rigidbody2D rb;
+    
 
     EnemyAIAttack enemyAIAttack;
 
@@ -39,7 +40,7 @@ public class EnemyAI : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         enemyAIAttack = GetComponent<EnemyAIAttack>();
         target = GameObject.Find("Player").transform;
-
+ 
         InvokeRepeating("UpdatePath", 0f, 0.5f);
     }
 
@@ -122,7 +123,7 @@ public class EnemyAI : MonoBehaviour
                 rb.AddForce(force);
                 float distance = Vector2.Distance(rb.position, path.vectorPath[currentWaypoint]);
 
-                if (distance < nextWaypointDistance)
+                if (distance < nextWaypointDistance+0.1)
                 {
                     currentWaypoint++;
                 }
