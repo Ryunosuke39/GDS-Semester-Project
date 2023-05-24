@@ -114,8 +114,19 @@ public class Player : MonoBehaviour
                 boss.TakeDamage(bulletDamage);
             }
         }
+        //added for ditecting enemy tae damage 
+        /*
+        if (collision.gameObject.CompareTag("Enemy"))
+        {
+            EnemyAIAttack enemy = collision.gameObject.GetComponent<EnemyAIAttack>();
+            if (enemy != null)
+            {
+                enemy.TakeDamage(bulletDamage);
+            }
+        }
+        */
         //Thomas for tut
-        
+
         if (collision.gameObject.CompareTag("Door"))
         {
             Destroy(collision.gameObject);
@@ -231,7 +242,6 @@ public class Player : MonoBehaviour
 
         if (Health <= 0)
         {
-            animator.SetBool("Dead", true);
             Health = 0;
             isPlayerDead = true;
             if (isPlayerDead && !isPlayerDeathPlayed)
@@ -240,8 +250,9 @@ public class Player : MonoBehaviour
                 //animator.SetBool("Dead", true);  //player player dead animation 
                 isPlayerDeathPlayed =true;
             }
-            //Destroy(gameObject); produce error from camera follow scritp 
-             Die();//Jacky for lose panel
+            //Destroy(gameObject); produce error from camera follow scritp
+            animator.SetBool("Dead", true);
+            Die();//Jacky for lose panel
         }
          OnHealthChanged?.Invoke(Health);//Jacky 
     }
@@ -250,6 +261,7 @@ public class Player : MonoBehaviour
     private void Die()
     {
         GameManager.Instance.PlayerLost();
+        FindObjectOfType<AudioManager>().Play("Lose");
     }
 
       //Various items function realization code from Jacky

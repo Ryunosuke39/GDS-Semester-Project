@@ -16,6 +16,9 @@ public class GameManager : MonoBehaviour
     public GameObject winPanel;
     public GameObject losePanel;
 
+    //for player death animation
+    public GameObject player;//added
+
 
 
     private void Awake()
