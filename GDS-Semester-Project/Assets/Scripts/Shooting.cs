@@ -27,8 +27,9 @@ public class Shooting : MonoBehaviour
     void Start()
     {
         mainCam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
-    GameObject playerObject = GameObject.FindGameObjectWithTag("Player");
-
+        GameObject playerObject = GameObject.FindGameObjectWithTag("Player");
+    
+        /*
     if (playerObject != null)
     {
         player = playerObject.GetComponent<Player>();
@@ -37,6 +38,7 @@ public class Shooting : MonoBehaviour
     {
         Debug.LogWarning("Player object not found!");
     }
+        */
     }
 
     void Update()
